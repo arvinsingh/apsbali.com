@@ -8,12 +8,16 @@ const PostFooter = () => {
       <hr style={{ margin: 0 }}/>
       <footer className={styles.footer}>
         <p>
-          Thank you for being here. Follow me{' '}
-          <Link external href="https://x/0xarv1nd3r">
+          Thank you for being here. Let's connect{' '} 
+          <Link external href="https://www.linkedin.com/in/arvinder-pal-singh/">
+            on LinkedIn
+          </Link>{' '}
+          or{' '}
+          follow me{' '}
+          <Link external href="https://x.com/0xarv1nd3r">
             on X (Twitter)
           </Link>{' '}
-          or subscribe to my
-          <Link href="/feed.xml"> RSS feed</Link>.
+          .
         </p>
       </footer>
     </>
