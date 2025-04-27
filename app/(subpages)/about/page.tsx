@@ -12,19 +12,21 @@ const About = () => {
   return (
     <article>
       <p>
-        This site is built on the{' '}
-        <Link external href="https://nextjs.com">
-          Next.js 13
-        </Link>{' '}
-        App Directory and is deployed via{' '}
-        <Link external href="https://vercel.com/home">
-          Vercel
-        </Link>
-        . The icons are from{' '}
-        <Link external href="https://feathericons.com/">
-          Feather Icons
-        </Link>
-        . You can view the source on{' '}
+        Welcome to my blog. This is a simple space where I can jot down my thoughts,
+        share my projects, and capture those fleeting ideas as they come.
+        Here, you'll find a mix of what I'm currently working on—from detailed project notes to everyday reflections.
+      </p>
+      <p>
+        I started this blog as a personal record of my journey,
+        a place where ideas can grow without much fuss.
+        I'm glad you're here to read a bit about what's on my mind,
+        and I hope my posts give you some insight into my thinking process.
+      </p>
+      <p>
+        Thank you for stopping by.
+      </p>
+      <p>
+        You can view the source of this website on{' '}
         <Link external href="https://github.com/arvinsingh/apsbali.com">
           GitHub
         </Link>
