@@ -58,14 +58,6 @@ export function getMetadata({
       <meta charSet="utf-8" />
       <meta property="og:locale" content="en" />
 
-      {/* RSS feed */}
-      <link
-        rel="alternate"
-        type="application/rss+xml"
-        title="RSS Feed for apsbali.com"
-        href="/feed.xml"
-      />
-
       {/* Favicons */}
       <link rel="manifest" href="/favicons/manifest.json" />
       <meta name="theme-color" content="#000000" />

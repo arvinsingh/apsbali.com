@@ -66,11 +66,6 @@ export const metadata = {
   icons: {
     shortcut: 'https://apsbali.com/favicons/favicon.ico',
   },
-  alternates: {
-    types: {
-      'application/rss+xml': 'https://apsbali.com/feed.xml',
-    },
-  },
 }
 
 export const viewport: Viewport = {
