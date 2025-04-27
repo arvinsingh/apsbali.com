@@ -5,21 +5,21 @@ import fs from 'fs/promises'
 import { cache } from 'react'
 import { unstable_cache } from 'next/cache'
 
-const thirdPartyPosts: Post[] = [
-  {
-    title: 'Post Title Here', // Replace with the actual title
-    description: 'Brief description of the post here.', // Replace with the actual description
-    body: '', // Leave empty or add the full content if needed
-    date: '2025-04-01T10:00:00.000Z', //'YYYY-MM-DDTHH:mm:ss.sssZ', // ISO format date
-    slug: '', // Add slug for the post (optional)
-    tags: [], // Add tags as an array of strings, e.g., ['Tag1', 'Tag2']
-    lastModified: 0, // Timestamp for the last modification (optional)
-    isThirdParty: true, // Keep true if it's a third-party post
-    href: 'https://example.com', // Replace with the actual link
-    type: 'post', // Specify the type of content
-  },
+const thirdPartyPosts: Post[] = []
+//  {
+//    title: 'Post Title Here', // Replace with the actual title
+//    description: 'Brief description of the post here.', // Replace with the actual description
+//    body: '', // Leave empty or add the full content if needed
+//    date: '2025-04-01T10:00:00.000Z', //'YYYY-MM-DDTHH:mm:ss.sssZ', // ISO format date
+//    slug: '', // Add slug for the post (optional)
+//    tags: [], // Add tags as an array of strings, e.g., ['Tag1', 'Tag2']
+//    lastModified: 0, // Timestamp for the last modification (optional)
+//    isThirdParty: true, // Keep true if it's a third-party post
+//    href: 'https://example.com', // Replace with the actual link
+//    type: 'post', // Specify the type of content
+//  },
   // Add more posts below using the same structure
-]
+//]
 
 export const getPosts = cache(async (includeThirdPartyPosts?: boolean) => {
   const posts = await fs.readdir('./posts/')
