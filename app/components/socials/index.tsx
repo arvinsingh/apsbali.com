@@ -1,10 +1,15 @@
 import { SocialButton } from './social-button'
 import styles from './socials.module.css'
-import { GitHub, Discord, Mail, RSS } from '@components/icons'
+import { GitHub, Discord, Mail, LinkedIn } from '@components/icons'
 
 const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
   return (
     <div className={styles.socials} {...props}>
+      <SocialButton
+        href="https://www.linkedin.com/in/arvinder-pal-singh/"
+        icon={<LinkedIn strokeWidth={2} />}
+        tooltip="LinkedIn"
+      />
       <SocialButton
         href="https://github.com/arvinsingh"
         icon={<GitHub strokeWidth={2} />}
@@ -19,11 +24,6 @@ const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
         href="mailto:arvinsingh@protonmail.com"
         icon={<Mail strokeWidth={2} />}
         tooltip="Email"
-      />
-      <SocialButton
-        href="/feed.xml"
-        icon={<RSS strokeWidth={2} />}
-        tooltip="RSS"
       />
       {/* <ThemeSwitcher /> */}
     </div>
