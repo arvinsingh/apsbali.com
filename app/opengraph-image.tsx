@@ -63,7 +63,7 @@ export default async function (): Promise<ImageResponse> {
             fontSize: 100,
           }}
         >
-          Arvin Singh&apos;s Website
+          Arvin&apos;s Website
         </div>
       </div>
     ),

@@ -2,7 +2,7 @@ import Outline from '@components/layout-outline'
 
 export const metadata = {
   title: 'Blog',
-  description: 'Posts and tips, mostly about software.',
+  description: 'Posts and tips.',
   alternates: {
     canonical: 'https://apsbali.com/blog',
   },
