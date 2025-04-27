@@ -1,5 +1,5 @@
 ---
-title: Hello World -- An Introductions
+title: Hello World -- An Introduction
 description: A post about myself and my background.
 slug: intro
 date: Apr 27, 2025
