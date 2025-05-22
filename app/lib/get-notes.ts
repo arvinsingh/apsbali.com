@@ -1,9 +1,29 @@
 import { cache } from 'react'
 import { readFiles } from './read-files'
 import { Note } from './types'
+import path from 'path'
+import fs from 'fs'
+
+// Helper function to check if directory exists
+function directoryExists(dirPath: string): boolean {
+  try {
+    return fs.statSync(dirPath).isDirectory()
+  } catch (err) {
+    return false
+  }
+}
 
 export const getNotes = cache(async () => {
-  const notesWithMetadata = readFiles<Note>('./notes/')
+  // Use path.join with process.cwd() to get absolute path
+  const notesDir = path.join(process.cwd(), 'notes')
+
+  // Check if directory exists and return empty array if not
+  if (!directoryExists(notesDir)) {
+    console.warn(`Notes directory not found at: ${notesDir}`)
+    return []
+  }
+
+  const notesWithMetadata = readFiles<Note>(notesDir)
 
   const filtered = notesWithMetadata
     .filter((post) => post !== null)
