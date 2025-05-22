@@ -1,4 +1,5 @@
 import Link from '@components/link'
+import { githubLink } from '@lib/social-links'
 
 export const metadata = {
   title: 'About',
@@ -27,7 +28,7 @@ const About = () => {
       </p>
       <p>
         You can view the source of this website on{' '}
-        <Link external href="https://github.com/arvinsingh/apsbali.com">
+        <Link external href={githubLink}>
           GitHub
         </Link>
         .

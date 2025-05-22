@@ -1,29 +1,35 @@
 import { SocialButton } from './social-button'
 import styles from './socials.module.css'
-import { GitHub, Discord, Mail, LinkedIn } from '@components/icons'
+import { GitHub, Discord, Mail, LinkedIn, FileText } from '@components/icons'
+import { socialLinks } from '@lib/social-links'
 
 const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
   return (
     <div className={styles.socials} {...props}>
       <SocialButton
-        href="https://www.linkedin.com/in/arvinder-pal-singh/"
+        href={socialLinks.linkedin.href}
         icon={<LinkedIn strokeWidth={2} />}
-        tooltip="LinkedIn"
+        tooltip={socialLinks.linkedin.tooltip}
       />
       <SocialButton
-        href="https://github.com/arvinsingh"
+        href={socialLinks.github.href}
         icon={<GitHub strokeWidth={2} />}
-        tooltip="GitHub"
+        tooltip={socialLinks.github.tooltip}
       />
       <SocialButton
-        href="https://discord.com/users/738389772871139330"
+        href={socialLinks.discord.href}
         icon={<Discord strokeWidth={2} />}
-        tooltip="Discord"
+        tooltip={socialLinks.discord.tooltip}
       />
       <SocialButton
-        href="mailto:arvinsingh@protonmail.com"
+        href={socialLinks.email.href}
         icon={<Mail strokeWidth={2} />}
-        tooltip="Email"
+        tooltip={socialLinks.email.tooltip}
+      />
+      <SocialButton
+        href={"/resume"}
+        icon={<FileText strokeWidth={2} />}
+        tooltip={socialLinks.resume.tooltip}
       />
       {/* <ThemeSwitcher /> */}
     </div>

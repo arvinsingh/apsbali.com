@@ -1,6 +1,7 @@
 import Link from '@components/link'
 import React from 'react'
 import styles from './footer.module.css'
+import { linkedinLink, twitterLink } from '@lib/social-links'
 
 const PostFooter = () => {
   return (
@@ -9,12 +10,12 @@ const PostFooter = () => {
       <footer className={styles.footer}>
         <p>
           Thank you for being here. Let's connect{' '} 
-          <Link external href="https://www.linkedin.com/in/arvinder-pal-singh/">
+          <Link external href={linkedinLink}>
             on LinkedIn
           </Link>{' '}
           or{' '}
           follow me{' '}
-          <Link external href="https://x.com/0xarv1nd3r">
+          <Link external href={twitterLink}>
             on X (Twitter)
           </Link>{' '}
           .
