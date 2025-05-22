@@ -5,14 +5,15 @@ import path from 'path'
 export function readFiles<T extends {
     date: string
 }>(dirPath: string) {
-  const files = fs.readdirSync(dirPath)
+  try {
+    const files = fs.readdirSync(dirPath)
 
-   const parsed = files
+    const parsed = files
       .filter(
         (file) => path.extname(file) === '.md' || path.extname(file) === '.mdx',
       )
       .map((file) => {
-        const filePath = `./${dirPath}/${file}`
+        const filePath = path.join(dirPath, file)
         const postContent = fs.readFileSync(filePath, 'utf8')
         const { data, content } = matter(postContent)
 
@@ -29,4 +30,8 @@ export function readFiles<T extends {
             a && b ? new Date(b.date).getTime() - new Date(a.date).getTime() : 0,
         ) as T[]
     return filtered
+  } catch (error) {
+    console.error(`Error reading files from ${dirPath}:`, error)
+    return []
+  }
 }
