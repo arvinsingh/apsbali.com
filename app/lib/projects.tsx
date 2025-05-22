@@ -1,67 +1,94 @@
 import type { Project } from './types'
-import { cache } from 'react'
-import { unstable_cache } from 'next/cache';
 
 const Projects: Project[] = [
-  {
-    title: 'Project Title',
-    description: 'Project description.',
-    href: '/blog/project-title',
-    role: 'dummy role',
-    years: ['2025'],
-    type: 'project'
-  },
+	{
+		title: 'CymruFluency',
+		description: ' Introduced a novel dataset and method for evaluating Welsh language fluency using multimodal fusion techniques.',
+		href: 'https://github.com/arvinsingh/CymruFluency',
+		role: 'Lead Researcher',
+		years: ['2025'],
+		type: 'project',
+	},
+	{
+		title: 'Fluency Analyzer App',
+		description: 'Developed a concept web application that provides a user-friendly interface for analyzing fluency in Welsh.',
+		href: '/blog/fluency-analyzer-app',
+		role: 'ML Engineer',
+		years: ['2025'],
+		type: 'project',
+	},
+	{
+		title: 'ELISA - Fake News Detector',
+		description: 'Fake news & clickbate detection using NLP and ML techniques.',
+		href: 'https://github.com/arvinsingh/ELISA',
+		role: 'MLOps Engineer',
+		years: ['2018', '2019'],
+		type: 'project',
+	},
+	{
+		title: 'ClusTMPay SIH\'19',
+		description: 'Reduce the amount of push notifications require for e-commerce apps by using a machine learning model to predict the best time to send notifications.',
+		href: 'https://github.com/arvinsingh/SIH2019-PayTM-SJ1-MachineWorks',
+		role: 'Lead AI Engineer',
+		years: ['2019'],
+		type: 'project',
+	},
+	{
+		title: 'Fake News Detection',
+		description: 'Comparative evaluation of Machine Learning algorithms for fake news detection',
+		href: 'https://github.com/arvinsingh/FND_research',
+		role: 'Lead Researcher',
+		years: ['2018', '2019'],
+		type: 'project',
+	},
 ]
 
-export const getProjects = cache(async (): Promise<Project[]> => {
-  if (process.env.NODE_ENV === 'production' && !process.env.GITHUB_TOKEN) {
-    throw new Error(
-      'No GITHUB_TOKEN provided. Generate a personal use token on GitHub.'
-    )
-  }
+export const getProjects = async (): Promise<Project[]> => {
+	//console.log('getProjects being called with projects:', Projects)
 
-  const withStars = unstable_cache(async () => await Promise.all(
-    Projects.map(async (proj) => {
-      const split = proj.href?.split('/')
-      if (!split) {
-        return proj
-      }
+	// check for GitHub token in production
+	if (process.env.NODE_ENV === 'production' && !process.env.GITHUB_TOKEN) {
+		console.warn('No GITHUB_TOKEN provided. GitHub stars will not be fetched.')
+	}
 
-      if (split[2] === 'github.com') {
-        const user = split[3]
-        const repo = split[4]
-        const fetchUrl =
-          process.env.NODE_ENV === 'production'
-            ? `https://api.github.com/repos/${user}/${repo}`
-            : 'http://localhost:3000/mock-stars-response.json'
-        const { stargazers_count, message } = await (
-          await fetch(fetchUrl, {
-            headers: {
-              Authorization: process.env.GITHUB_TOKEN ?? '',
-            },
-            cache: 'force-cache'
-          })
-        ).json()
+	const projectsWithStars = await Promise.all(
+		Projects.map(async (proj) => {
+			const split = proj.href?.split('/')
+			if (!split || split.length < 3) {
+				return proj
+			}
 
-        // rate limited
-        if (!stargazers_count && message) {
-          console.warn(`Rate limited or error: ${message}`)
-          return proj
-        }
+			// attempt to fetch GitHub stars if it's a GitHub URL and we have a token
+			if (split[2] === 'github.com' && split.length >= 5) {
+				try {
+					const user = split[3]
+					const repo = split[4]
 
-        return {
-          ...proj,
-          stars: stargazers_count,
-        }
-      }
-      return proj
-    })
-  ),
-    ['projects'],
-    {
-      revalidate: 60 * 60 * 24 // 24 hours
-    }
-  )
+					if (process.env.NODE_ENV === 'production' && process.env.GITHUB_TOKEN) {
+						const response = await fetch(
+							`https://api.github.com/repos/${user}/${repo}`,
+							{
+								headers: {
+									Authorization: `token ${process.env.GITHUB_TOKEN}`,
+								},
+							}
+						)
 
-  return await withStars()
-})
+						if (response.ok) {
+							const data = await response.json()
+							return {
+								...proj,
+								stars: data.stargazers_count,
+							}
+						}
+					}
+				} catch (error) {
+					console.warn('Error fetching GitHub stars:', error)
+				}
+			}
+			return proj
+		})
+	)
+
+	return projectsWithStars
+}
