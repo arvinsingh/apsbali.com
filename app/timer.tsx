@@ -3,6 +3,7 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
 import styles from './timer.module.css'
+
 const timeStringOptions: Intl.DateTimeFormatOptions[] = [
   {
     hour: 'numeric',
@@ -73,6 +74,12 @@ const timeStringOptions: Intl.DateTimeFormatOptions[] = [
 
 const TimeOfDay = () => {
   const [format, setFormat] = useState(timeStringOptions[0])
+  const [isClient, setIsClient] = useState(false)
+
+  // Set isClient to true when component mounts on the client
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const onClick = () => {
     const nextFormat = timeStringOptions.indexOf(format) + 1
@@ -83,6 +90,7 @@ const TimeOfDay = () => {
     }
   }
 
+  // Only render the actual time on the client side
   return (
     <button
       className={styles.button}
@@ -90,7 +98,7 @@ const TimeOfDay = () => {
       type="button"
       aria-label="Time of day"
     >
-      <MemoTimeDisplay format={format} />
+      {isClient ? <MemoTimeDisplay format={format} /> : <span>Loading time...</span>}
     </button>
   )
 }
@@ -101,6 +109,9 @@ const TimeDisplay = ({ format }: { format: Intl.DateTimeFormatOptions }) => {
   const [time, setTime] = useState(new Date())
 
   useEffect(() => {
+    // Set the initial time immediately when component mounts
+    setTime(new Date())
+    // Then update every second
     const interval = setInterval(() => setTime(new Date()), 1000)
     return () => clearInterval(interval)
   }, [])
