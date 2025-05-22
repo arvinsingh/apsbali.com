@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 100%;
+}
+
+.pdfContainer {
+  margin-top: var(--gap);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 85vh; /* Adjusted for better viewing */
+  border-radius: var(--radius);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.pdfFrame {
+  width: 100%;
+  height: 100%;
+  border: none;
+  /* for PDF fit */
+  min-height: 800px; /* Minimum height */
+  display: block;
+}
+
+.loading {
+  padding: var(--gap);
+  text-align: center;
+  color: var(--gray);
+}
+
+.error {
+  padding: var(--gap);
+  color: #e00;
+  text-align: center;
+}
+
+.downloadLink {
+  margin-top: 0;
+}
+
+.downloadLink a {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: var(--fg);
+  color: var(--bg);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.downloadLink a:hover {
+  background-color: var(--gray);
+  text-decoration: none;
+}
+
+.errorBoundary {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .pdfContainer {
+    height: 75vh;
+  }
+  
+  .pdfFrame {
+    min-height: 600px;
+  }
+}
