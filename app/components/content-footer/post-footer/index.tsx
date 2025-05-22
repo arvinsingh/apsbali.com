@@ -9,7 +9,7 @@ const PostFooter = () => {
       <hr style={{ margin: 0 }}/>
       <footer className={styles.footer}>
         <p>
-          Thank you for being here. Let's connect{' '} 
+          Thank you for being here. Let&apos;s connect{' '}
           <Link external href={linkedinLink}>
             on LinkedIn
           </Link>{' '}

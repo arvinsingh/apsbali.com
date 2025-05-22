@@ -8,27 +8,27 @@ const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
     <div className={styles.socials} {...props}>
       <SocialButton
         href={socialLinks.linkedin.href}
-        icon={<LinkedIn strokeWidth={2} />}
+        icon={<LinkedIn />}
         tooltip={socialLinks.linkedin.tooltip}
       />
       <SocialButton
         href={socialLinks.github.href}
-        icon={<GitHub strokeWidth={2} />}
+        icon={<GitHub />}
         tooltip={socialLinks.github.tooltip}
       />
       <SocialButton
         href={socialLinks.discord.href}
-        icon={<Discord strokeWidth={2} />}
+        icon={<Discord />}
         tooltip={socialLinks.discord.tooltip}
       />
       <SocialButton
         href={socialLinks.email.href}
-        icon={<Mail strokeWidth={2} />}
+        icon={<Mail />}
         tooltip={socialLinks.email.tooltip}
       />
       <SocialButton
         href={"/resume"}
-        icon={<FileText strokeWidth={2} />}
+        icon={<FileText />}
         tooltip={socialLinks.resume.tooltip}
       />
       {/* <ThemeSwitcher /> */}

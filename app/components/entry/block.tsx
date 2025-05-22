@@ -1,6 +1,5 @@
 import Link from '@components/link'
 import styles from './block.module.css'
-import Badge from '@components/badge'
 
 type Props =
   | {

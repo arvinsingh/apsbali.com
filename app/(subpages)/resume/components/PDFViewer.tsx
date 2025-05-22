@@ -27,9 +27,9 @@ const PDFViewer = ({ url }: { url: string }) => {
         className={styles.document}
       >
         {Array.from(new Array(numPages || 0), (_, index) => (
-          <Page 
-            key={`page_${index + 1}`} 
-            pageNumber={index + 1} 
+          <Page
+            key={`page_${index + 1}`}
+            pageNumber={index + 1}
             renderTextLayer={true}
             renderAnnotationLayer={true}
             className={styles.page}

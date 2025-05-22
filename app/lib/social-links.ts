@@ -5,7 +5,7 @@
 
 export interface SocialLink {
   name: string;
-  href?: string;
+  href: string;
   id?: string;
   tooltip: string;
   icon?: string; // Could be added to reference icons by name
@@ -35,6 +35,7 @@ export const socialLinks: Record<string, SocialLink> = {
   resume: {
     name: "Résumé",
     id: "1EW9feiNcfrVcYQNC-TW7hNPNSOYtBVF4",
+    href: "",
     tooltip: "Résumé"
   },
   twitter: {

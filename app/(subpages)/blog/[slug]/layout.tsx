@@ -1,3 +1,4 @@
+import React from 'react'
 import getPosts from '@lib/get-posts'
 import Navigation from '@components/content-footer/navigation'
 import PostFooter from '@components/content-footer/post-footer'
@@ -45,10 +46,9 @@ async function getData({ slug }: { slug: string }) {
     ...rest,
   }
 }
-
 export default async function PostLayout(
   props: {
-    children: JSX.Element
+    children: React.ReactNode
     params: Promise<{
       slug: string
     }>

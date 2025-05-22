@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react';
 import styles from './resume.module.css';
-import { useRouter } from 'next/navigation';
+//import { useRouter } from 'next/navigation';
 import { resumeID } from '@lib/social-links';
 
 // Error boundary to catch PDF rendering errors
@@ -19,10 +19,10 @@ export default function ResumePage() {
   const GOOGLE_DRIVE_FILE_ID = resumeID;
   const EMBED_URL = `https://drive.google.com/file/d/${GOOGLE_DRIVE_FILE_ID}/preview`;
   const DOWNLOAD_URL = `https://drive.google.com/uc?export=download&id=${GOOGLE_DRIVE_FILE_ID}`;
-  
+
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const router = useRouter();
-  
+  //const router = useRouter();
+
   // Handle iframe load and cleanup
   useEffect(() => {
     return () => {
@@ -56,10 +56,10 @@ export default function ResumePage() {
           Download PDF
         </a>
       </p>
-      
+
       <ErrorBoundary>
         <div className={styles.pdfContainer}>
-          <iframe 
+          <iframe
             ref={iframeRef}
             src={EMBED_URL}
             className={styles.pdfFrame}
