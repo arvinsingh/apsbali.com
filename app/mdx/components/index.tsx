@@ -10,6 +10,21 @@ import Home from '@components/icons/home'
 import { Tweet } from 'react-tweet'
 // import Diff from './mdx-diff'
 import dynamic from 'next/dynamic'
+
+// Import the Slideshow component
+const Slideshow = dynamic(() => import('@components/slideshow'), {
+  loading: () => (
+    <div
+      style={{
+        height: 400,
+        width: '100%',
+        display: 'flex',
+        backgroundColor: 'var(--light-gray)',
+      }}
+    />
+  ),
+})
+
 const Diff = dynamic(() => import('./mdx-diff'), {
   loading: () => (
     <div
@@ -90,6 +105,8 @@ export const mdxComponents: MDXComponents = {
   FileTree: FileTree as any,
   File: File as any,
   Folder: Folder as any,
+  // Add the Slideshow component
+  Slideshow: Slideshow as any,
 
   Tweet: (props) => (
     <div
