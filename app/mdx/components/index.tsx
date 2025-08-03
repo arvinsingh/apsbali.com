@@ -4,6 +4,7 @@ import NextImage from 'next/image'
 import { MDXNote } from './mdx-note'
 import { Code } from 'bright'
 import { MDXImage } from './mdx-image'
+import { MDXMermaid } from './mdx-mermaid'
 import Info from '@components/icons/info'
 import { FileTree, File, Folder } from '@components/file-tree'
 import Home from '@components/icons/home'
@@ -72,6 +73,15 @@ export const mdxComponents: MDXComponents = {
     React.HTMLAttributes<HTMLElement>,
     HTMLPreElement
   >) => {
+    // Check if this is a mermaid code block
+    const codeElement = children as any
+    const isCodeElement = codeElement?.props?.children && typeof codeElement.props.children === 'string'
+    const className = codeElement?.props?.className || ''
+
+    if (isCodeElement && className.includes('language-mermaid')) {
+      return <MDXMermaid>{codeElement.props.children}</MDXMermaid>
+    }
+
     return (
       <Code {...props}>
         {children as any}
@@ -107,6 +117,8 @@ export const mdxComponents: MDXComponents = {
   Folder: Folder as any,
   // Add the Slideshow component
   Slideshow: Slideshow as any,
+  // Add the Mermaid component
+  Mermaid: MDXMermaid as any,
 
   Tweet: (props) => (
     <div

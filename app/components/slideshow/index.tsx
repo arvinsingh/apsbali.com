@@ -106,6 +106,7 @@ const Slideshow = ({
                 src={image}
                 alt={`${alt} ${index + 1}`}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
                 style={{ objectFit: 'contain' }}
                 priority={index === 0}
               />
