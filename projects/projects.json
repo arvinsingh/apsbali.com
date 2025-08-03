@@ -1,0 +1,48 @@
+{
+  "projects": [
+    {
+      "title": "ToyGrad",
+      "description": "Built my own automatic differentiation engine from scratch to understand how PyTorch works under the hood. Complete with scalar autograd, neural networks, and backpropagation.",
+      "href": "https://github.com/arvinsingh/toyGrad",
+      "role": "Autodidactic",
+      "years": [2025],
+      "featured": true
+    },
+    {
+      "title": "CymruFluency",
+      "description": "Introduced a novel dataset and method for evaluating Welsh language fluency using multimodal fusion techniques.",
+      "href": "https://github.com/arvinsingh/CymruFluency",
+      "role": "Lead Researcher",
+      "years": [2025],
+      "featured": true
+    },
+    {
+      "title": "Fluency Analyzer App",
+      "description": "Developed a concept web application that provides a user-friendly interface for analyzing fluency in Welsh.",
+      "href": "/blog/fluency-analyzer-app",
+      "role": "ML Engineer",
+      "years": [2025]
+    },
+    {
+      "title": "ELISA - Fake News Detector",
+      "description": "Fake news & clickbait detection using NLP and ML techniques.",
+      "href": "https://github.com/arvinsingh/ELISA",
+      "role": "MLOps Engineer",
+      "years": [2018, 2019]
+    },
+    {
+      "title": "ClusTMPay SIH'19",
+      "description": "Reduce the amount of push notifications require for e-commerce apps by using a machine learning model to predict the best time to send notifications.",
+      "href": "https://github.com/arvinsingh/SIH2019-PayTM-SJ1-MachineWorks",
+      "role": "Lead AI Engineer",
+      "years": [2019]
+    },
+    {
+      "title": "Fake News Detection",
+      "description": "Comparative evaluation of Machine Learning algorithms for fake news detection",
+      "href": "https://github.com/arvinsingh/FND_research",
+      "role": "Lead Researcher",
+      "years": [2018, 2019]
+    }
+  ]
+}

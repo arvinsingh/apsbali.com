@@ -1,50 +1,34 @@
 import type { Project } from './types'
+import fs from 'fs/promises'
+import path from 'path'
+import { cache } from 'react'
 
-const Projects: Project[] = [
-	{
-		title: 'CymruFluency',
-		description: ' Introduced a novel dataset and method for evaluating Welsh language fluency using multimodal fusion techniques.',
-		href: 'https://github.com/arvinsingh/CymruFluency',
-		role: 'Lead Researcher',
-		years: ['2025'],
-		type: 'project',
-	},
-	{
-		title: 'Fluency Analyzer App',
-		description: 'Developed a concept web application that provides a user-friendly interface for analyzing fluency in Welsh.',
-		href: '/blog/fluency-analyzer-app',
-		role: 'ML Engineer',
-		years: ['2025'],
-		type: 'project',
-	},
-	{
-		title: 'ELISA - Fake News Detector',
-		description: 'Fake news & clickbate detection using NLP and ML techniques.',
-		href: 'https://github.com/arvinsingh/ELISA',
-		role: 'MLOps Engineer',
-		years: ['2018', '2019'],
-		type: 'project',
-	},
-	{
-		title: 'ClusTMPay SIH\'19',
-		description: 'Reduce the amount of push notifications require for e-commerce apps by using a machine learning model to predict the best time to send notifications.',
-		href: 'https://github.com/arvinsingh/SIH2019-PayTM-SJ1-MachineWorks',
-		role: 'Lead AI Engineer',
-		years: ['2019'],
-		type: 'project',
-	},
-	{
-		title: 'Fake News Detection',
-		description: 'Comparative evaluation of Machine Learning algorithms for fake news detection',
-		href: 'https://github.com/arvinsingh/FND_research',
-		role: 'Lead Researcher',
-		years: ['2018', '2019'],
-		type: 'project',
-	},
-]
+const loadProjectsFromFile = cache(async (): Promise<Project[]> => {
+	const projectsPath = path.join(process.cwd(), 'projects', 'projects.json')
+	const fileContent = await fs.readFile(projectsPath, 'utf8')
+	const data = JSON.parse(fileContent)
+
+	const projects = data.projects.map((proj: any) => ({
+		...proj,
+		years: proj.years.map(String), // Convert numbers to strings for consistency
+		type: 'project' as const,
+	}))
+
+	// Sort by featured first, then by most recent year
+	return projects.sort((a: any, b: any) => {
+		// Featured projects first
+		if (a.featured && !b.featured) return -1
+		if (!a.featured && b.featured) return 1
+
+		// Then by most recent year
+		const aYear = Math.max(...a.years.map((y: string) => parseInt(y)))
+		const bYear = Math.max(...b.years.map((y: string) => parseInt(y)))
+		return bYear - aYear
+	})
+})
 
 export const getProjects = async (): Promise<Project[]> => {
-	//console.log('getProjects being called with projects:', Projects)
+	const projects = await loadProjectsFromFile()
 
 	// check for GitHub token in production
 	if (process.env.NODE_ENV === 'production' && !process.env.GITHUB_TOKEN) {
@@ -52,7 +36,7 @@ export const getProjects = async (): Promise<Project[]> => {
 	}
 
 	const projectsWithStars = await Promise.all(
-		Projects.map(async (proj) => {
+		projects.map(async (proj) => {
 			const split = proj.href?.split('/')
 			if (!split || split.length < 3) {
 				return proj
