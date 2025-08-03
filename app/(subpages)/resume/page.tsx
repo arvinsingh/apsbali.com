@@ -25,10 +25,10 @@ export default function ResumePage() {
 
   // Handle iframe load and cleanup
   useEffect(() => {
+    const iframe = iframeRef.current; // Capture ref value when effect runs
     return () => {
-      // Prevent access to iframe during unmounting
-      if (iframeRef.current) {
-        const iframe = iframeRef.current;
+      // Use captured value in cleanup to avoid stale ref warnings
+      if (iframe) {
         iframe.src = 'about:blank';
       }
     };
