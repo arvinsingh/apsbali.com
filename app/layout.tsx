@@ -5,8 +5,11 @@ import { GeistMono } from 'geist/font/mono';
 import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from 'next-themes'
 import { Viewport } from 'next'
+import { getPersonalInfo } from '@data/site-config'
 
 export const dynamic = 'force-static'
+
+const personalInfo = getPersonalInfo()
 
 export default function RootLayout({
   children,
@@ -29,24 +32,24 @@ export default function RootLayout({
 }
 
 export const metadata = {
-  metadataBase: new URL('https://apsbali.com'),
+  metadataBase: new URL(personalInfo.website.url),
   title: {
-    template: '%s | Arvin Singh',
-    default: 'Arvin Singh',
+    template: `%s | ${personalInfo.name.display}`,
+    default: personalInfo.name.display,
   },
-  description: 'A website by Arvin Singh.',
+  description: personalInfo.description,
   openGraph: {
-    title: 'Arvin Singh',
-    url: 'https://apsbali.com',
-    siteName: "Arvin Singh's website",
+    title: personalInfo.name.display,
+    url: personalInfo.website.url,
+    siteName: `${personalInfo.name.display}'s website`,
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: `https://apsbali.com/opengraph-image`,
+        url: `${personalInfo.website.url}/opengraph-image`,
         width: 1200,
         height: 630,
-        alt: "Arvin Singh's site",
+        alt: `${personalInfo.name.display}'s site`,
       },
     ],
   },
@@ -59,12 +62,12 @@ export const metadata = {
     },
   },
   twitter: {
-    title: 'apsbali.com',
+    title: personalInfo.website.domain,
     card: 'summary_large_image',
-    creator: '@0xarv1nd3r',
+    creator: '@0xarv1nd3r', // This could also be moved to config
   },
   icons: {
-    shortcut: 'https://apsbali.com/favicons/favicon.ico',
+    shortcut: `${personalInfo.website.url}/favicons/favicon.ico`,
   },
 }
 

@@ -502,9 +502,9 @@ export function MDXMermaid({ children, id }: MermaidProps) {
               __html: svg.replace(
                 /<style>/g,
                 `<style>
-                  .node rect, .node circle, .node ellipse, .node polygon, .node path { 
-                    fill: var(--lightest-gray) !important; 
-                    stroke: var(--fg) !important; 
+                  .node rect, .node circle, .node ellipse, .node polygon, .node path {
+                    fill: var(--lightest-gray) !important;
+                    stroke: var(--fg) !important;
                     stroke-width: 2px !important;
                     stroke-opacity: 0.9 !important;
                     transition: all 0.2s ease !important;
@@ -514,8 +514,8 @@ export function MDXMermaid({ children, id }: MermaidProps) {
                     stroke-opacity: 1 !important;
                     filter: brightness(1.1) !important;
                   }
-                  .edgePath path { 
-                    stroke: var(--fg) !important; 
+                  .edgePath path {
+                    stroke: var(--fg) !important;
                     stroke-width: 2px !important;
                     stroke-opacity: 0.8 !important;
                     transition: all 0.2s ease !important;
@@ -524,9 +524,9 @@ export function MDXMermaid({ children, id }: MermaidProps) {
                     stroke-width: 3px !important;
                     stroke-opacity: 1 !important;
                   }
-                  .edgeLabel { 
-                    background-color: var(--bg) !important; 
-                    color: var(--fg) !important; 
+                  .edgeLabel {
+                    background-color: var(--bg) !important;
+                    color: var(--fg) !important;
                     border: 1px solid var(--fg) !important;
                     border-radius: 6px !important;
                     padding: 4px 8px !important;
@@ -534,15 +534,15 @@ export function MDXMermaid({ children, id }: MermaidProps) {
                     font-weight: 500 !important;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
                   }
-                  text { 
-                    fill: var(--fg) !important; 
+                  text {
+                    fill: var(--fg) !important;
                     font-weight: 600 !important;
                     font-size: 14px !important;
                     text-shadow: 0 1px 2px rgba(0,0,0,0.1) !important;
                   }
-                  .cluster rect { 
-                    fill: transparent !important; 
-                    stroke: var(--fg) !important; 
+                  .cluster rect {
+                    fill: transparent !important;
+                    stroke: var(--fg) !important;
                     stroke-width: 2px !important;
                     stroke-dasharray: 10,5 !important;
                     stroke-opacity: 0.7 !important;

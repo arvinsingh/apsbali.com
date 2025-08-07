@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og"
+import { getPersonalInfo } from '@data/site-config'
 
 export const size = { width: 1200, height: 600 }
 // TODO: update to support alt once nextjs has a solution for params
@@ -9,6 +10,7 @@ export const runtime = 'edge'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async function (): Promise<ImageResponse> {
+  const personalInfo = getPersonalInfo()
   const fontData = await fetch(
     new URL('./fonts/Inter-Medium.ttf', import.meta.url)
   ).then((res) => res.arrayBuffer())
@@ -45,7 +47,7 @@ export default async function (): Promise<ImageResponse> {
               padding: '4px 10px',
             }}
           >
-            apsbali.com
+            {personalInfo.website.domain}
           </span>
         </div>
         <div
@@ -63,7 +65,7 @@ export default async function (): Promise<ImageResponse> {
             fontSize: 100,
           }}
         >
-          Arvin&apos;s Website
+          {personalInfo.name.first}&apos;s Website
         </div>
       </div>
     ),

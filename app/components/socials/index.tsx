@@ -2,8 +2,11 @@ import { SocialButton } from './social-button'
 import styles from './socials.module.css'
 import { GitHub, Discord, Mail, LinkedIn, FileText } from '@components/icons'
 import { socialLinks } from '@lib/social-links'
+import { getFeatures } from '@data/site-config'
 
 const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
+  const features = getFeatures()
+
   return (
     <div className={styles.socials} {...props}>
       <SocialButton
@@ -26,11 +29,13 @@ const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
         icon={<Mail />}
         tooltip={socialLinks.email.tooltip}
       />
-      <SocialButton
-        href={"/resume"}
-        icon={<FileText />}
-        tooltip={socialLinks.resume.tooltip}
-      />
+      {features.resume && (
+        <SocialButton
+          href={"/resume"}
+          icon={<FileText />}
+          tooltip={socialLinks.resume.tooltip}
+        />
+      )}
       {/* <ThemeSwitcher /> */}
     </div>
   )

@@ -1,5 +1,5 @@
 import Link from '@components/link'
-import { githubLink } from '@lib/social-links'
+import { getAboutConfig, getRepositoryConfig } from '@data/site-config'
 
 export const metadata = {
   title: 'About',
@@ -10,28 +10,25 @@ export const metadata = {
 }
 
 const About = () => {
+  const aboutConfig = getAboutConfig()
+  const repositoryConfig = getRepositoryConfig()
+
   return (
     <article>
       <p>
-        Welcome to my blog. This is a simple space where I can jot down my thoughts,
-        share my projects, and capture those fleeting ideas as they come.
-        Here, you&apos;ll find a mix of what I&apos;m currently working on—from detailed project notes to everyday reflections.
+        {aboutConfig.content.introduction}
       </p>
       <p>
-        I started this blog as a personal record of my journey,
-        a place where ideas can grow without much fuss.
-        I&apos;m glad you&apos;re here to read a bit about what&apos;s on my mind,
-        and I hope my posts give you some insight into my thinking process.
+        {aboutConfig.content.purpose}
       </p>
       <p>
-        Thank you for stopping by.
+        {aboutConfig.content.closing}
       </p>
       <p>
-        You can view the source of this website on{' '}
-        <Link external href={githubLink}>
+        {aboutConfig.content.sourceCode}{' '}
+        <Link external href={repositoryConfig.url}>
           GitHub
         </Link>
-        .
       </p>
     </article>
   )

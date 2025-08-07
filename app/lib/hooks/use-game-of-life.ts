@@ -50,7 +50,7 @@ const useGol = ({
       const vertexShader = loadShader(
         gl,
         gl.VERTEX_SHADER,
-        `attribute vec2 coord; 
+        `attribute vec2 coord;
                     void main(void) {
                         gl_Position = vec4(coord, 0.0, 0.1);
                     }`
