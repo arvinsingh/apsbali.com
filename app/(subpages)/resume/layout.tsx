@@ -1,10 +1,13 @@
 import Outline from '@components/layout-outline'
+import { getPersonalInfo } from '@data/site-config'
+
+const personalInfo = getPersonalInfo()
 
 export const metadata = {
   title: 'Résumé',
-  description: 'Arvin Singh\'s professional résumé',
+  description: `${personalInfo.name.display}'s professional résumé`,
   alternates: {
-    canonical: 'https://apsbali.com/resume',
+    canonical: `${personalInfo.website.url}/resume`,
   },
 }
 

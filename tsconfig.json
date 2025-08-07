@@ -34,7 +34,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@*": ["./app/*"]
+      "@*": ["./app/*"],
+      "@data/*": ["./app/data/*"],
+      "@data": ["./app/data"]
     },
     "incremental": true
   },

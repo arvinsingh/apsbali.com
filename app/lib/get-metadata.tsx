@@ -1,3 +1,5 @@
+import { getPersonalInfo } from '@data/site-config'
+
 type Props = {
   title: string
   description: string
@@ -16,22 +18,26 @@ export function getMetadata({
   hidden,
   date,
   lastModified,
-  author = 'Arvin Singh',
+  author,
   path,
 }: Props) {
+  const personalInfo = getPersonalInfo()
+  const defaultAuthor = personalInfo.name.display
+  const finalAuthor = author || defaultAuthor
+
   const domain =
     process.env.NODE_ENV === 'production'
-      ? 'https://apsbali.com'
+      ? personalInfo.website.url
       : process.env.NEXT_PUBLIC_VERCEL_URL
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
       : 'http://localhost:3000'
 
   return (
     <>
-      {title.indexOf('Arvin Singh') > -1 ? (
+      {title.indexOf(personalInfo.name.display) > -1 ? (
         <title>{title}</title>
       ) : (
-        <title>{`${title} - ${author}`}</title>
+        <title>{`${title} - ${finalAuthor}`}</title>
       )}
       <meta name="og:title" content={title} />
 
@@ -50,10 +56,10 @@ export function getMetadata({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@0xarv1nd3r" />
-      <meta property="og:site_name" content="Arvin's site" />
-      <meta name="apple-mobile-web-app-title" content="Arvin" />
-      <meta name="author" content={author} />
+      <meta name="twitter:site" content="@0xarv1nd3r" /> {/* This could be moved to config */}
+      <meta property="og:site_name" content={`${personalInfo.name.first}'s site`} />
+      <meta name="apple-mobile-web-app-title" content={personalInfo.name.first} />
+      <meta name="author" content={finalAuthor} />
       <meta property="og:type" content="website" />
       <meta charSet="utf-8" />
       <meta property="og:locale" content="en" />
