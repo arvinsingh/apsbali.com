@@ -1,6 +1,14 @@
 {
   "projects": [
     {
+      "title": "GPU Benchmark Suite",
+      "description": "Introducing a comprehensive command-line suite for profiling GPU performance, powered by CUDA C++, Triton, and PyTorch, across diverse tasks. Absolutely obsessed. :)",
+      "href": "https://github.com/arvinsingh/gpu-benchmark-suite",
+      "role": "Autodidactic",
+      "years": [2025],
+      "featured": true
+    },
+    {
       "title": "ToyGrad",
       "description": "Built my own automatic differentiation engine from scratch to understand how PyTorch works under the hood. Complete with scalar autograd, neural networks, and backpropagation.",
       "href": "https://github.com/arvinsingh/toyGrad",
