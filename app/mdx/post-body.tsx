@@ -7,6 +7,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 // @ts-expect-error no types
 import remarkA11yEmoji from '@fec/remark-a11y-emoji'
 import remarkToc from 'remark-toc'
+import remarkGithubBlockquoteAlert from 'remark-github-blockquote-alert'
 import { mdxComponents } from './components'
 
 export function PostBody({ children }: { children: string }) {
@@ -19,6 +20,7 @@ export function PostBody({ children }: { children: string }) {
             remarkGfm,
             remarkFrontmatter,
             remarkA11yEmoji,
+            remarkGithubBlockquoteAlert,
             [
               remarkToc,
               {

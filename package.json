@@ -44,6 +44,7 @@
     "rehype-highlight": "7.0.1",
     "rehype-img-size": "1.0.1",
     "remark-frontmatter": "5.0.0",
+    "remark-github-blockquote-alert": "^2.0.0",
     "remark-toc": "9.0.0",
     "tiny-glob": "0.2.9",
     "youtubei": "0.0.1-rc.36"
