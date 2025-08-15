@@ -1,6 +1,14 @@
 {
   "projects": [
     {
+      "title": "3D Facial Reconstruction Tool",
+      "description": "A robust pipeline for processing stereo imaging data into textured 3D models using cross-platform executable integration.",
+      "href": "https://github.com/arvinsingh/3DFacialReconstruction",
+      "role": "Machine Learning Engineer",
+      "years": [2025],
+      "featured": true
+    },
+    {
       "title": "GPU Benchmark Suite",
       "description": "Introducing a comprehensive command-line suite for profiling GPU performance, powered by CUDA C++, Triton, and PyTorch, across diverse tasks. Absolutely obsessed. :)",
       "href": "https://github.com/arvinsingh/gpu-benchmark-suite",
