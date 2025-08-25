@@ -1,6 +1,14 @@
 {
   "projects": [
     {
+      "title": "My LLM Playground",
+      "description": "Modular API with multi-LLM inference, persistent storage, and semantic search with RAG augmentation.",
+      "href": "https://github.com/arvinsingh/MyLLMPlayground",
+      "role": "Autodidactic",
+      "years": [2025],
+      "featured": true
+    },
+    {
       "title": "3D Facial Reconstruction Tool",
       "description": "A robust pipeline for processing stereo imaging data into textured 3D models using cross-platform executable integration.",
       "href": "https://github.com/arvinsingh/3DFacialReconstruction",
