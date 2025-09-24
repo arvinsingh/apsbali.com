@@ -75,17 +75,17 @@ export const siteConfig: SiteConfig = {
       display: "Arvin Singh"
     },
     title: "Machine Learning Engineer & Developer",
-    description: "Machine Learning Engineer passionate about deep learning, consciousness, and - lately - obsessed with GPUs and distributed learning.",
+    description: "Driven by deep learning, haunted by questions of consciousness, and - lately - consumed by GPUs and distributed learning.",
     location: "Kashmir",
     bio: {
-      short: "Machine Learning Engineer passionate about deep learning, consciousness, and - lately - obsessed with GPUs and distributed learning.",
+      short: "I'm driven by deep learning, haunted by questions of consciousness, and - lately - consumed by GPUs and distributed learning.",
       medium: `Hello World! My name is Arvin, and I hail from Kashmir - a place where beauty and harsh realities coexist.
-               I'm currently working as a Machine Learning Engineer, tackling the fascinating challenge of fluency analysis in languages.
+               I'm currently working as a Machine Learning Engineer, tackling challenges in fluency analysis of languages.
                Beyond the technical realm, I have many hobbies including programming, science fiction, philosophy, gaming, and writing.`,
       long: `My name is Arvin, and I hail from Kashmir - a place where beauty and harsh realities coexist.
              Growing up surrounded by the region's unyielding challenges has indelibly shaped my outlook on life and instilled in me a relentless curiosity about the world.
 
-             I'm currently working as a Machine Learning Engineer, tackling the fascinating challenges like distributed learning and language analysis.
+             I'm currently working as a Machine Learning Engineer, tackling the challenges like distributed learning and language analysis.
              Every day, my work fuels my passion for deep learning and the mysteries of consciousness, topics that leave my mind buzzing with questions and ideas.
 
              Beyond the technical realm, I have many hobbies that keep me grounded and inspired. I delight in programming, devour science fiction novels,

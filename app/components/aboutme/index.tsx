@@ -6,8 +6,7 @@ const AboutMe = () => {
   return (
     <section>
       <p>
-        Hello World!{' '}
-        Welcome to {personalInfo.name.first}&apos;s website. :{')'}
+        I&apos;m {personalInfo.name.first}, welcome to my website. :{')'}
       </p>
       <p>
         {personalInfo.bio.short}
