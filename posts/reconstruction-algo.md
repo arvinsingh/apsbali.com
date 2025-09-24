@@ -6,9 +6,9 @@ date: Aug 15, 2025
 published: True
 ---
 
-In my line of work, there are moments when “good enough” simply isn't. When the task at hand is reconstructing a human face in three dimensions with sub‑millimetre precision, every pixel, every algorithmic decision, matters. For years, our team relied on a professional‑grade photogrammetry system, impressively sophisticated, but now a relic of its prime and long abandoned by its manufacturer. I could have treated its decline as an inconvenience. Instead, I treated it as an excuse to pull the machine apart conceptually and learn how it really thinks. That curiosity snowballed into a deep dive through the guts of computer vision where algorithms, statistical models, and mathematical optimizations weave together in a choreography that turns ordinary photographs into finely detailed 3D meshes.
+Precision matters when you’re reconstructing a human face in 3D; sub‑millimetre accuracy leaves no room for “good enough.” For years, we relied on a professional‑grade photogrammetry system: once cutting‑edge, now unsupported and showing its age. Instead of seeing that as a roadblock, I treated it as a chance to take the system apart conceptually and understand its inner logic. That process pulled me into the core of computer vision, where algorithms, statistical models, and mathematical optimizations work in concert to turn photographs into finely detailed 3D meshes.
 
-This post is the field notes from that journey: my own 23‑step, six‑phase reconstruction pipeline. Not the manufacturer's playbook, mine, rebuilt from the ground up, the way I understood it, implemented it, and made it work.
+This post is the field notes from that journey: my own 23‑step, seven‑phase reconstruction pipeline. Not the manufacturer's playbook, mine, rebuilt from the ground up, the way I understood it, implemented it, and made it work.
 
 <Image
   src="/blog/reconstruction-algo/3d-reconstructed.gif"
@@ -473,4 +473,4 @@ The legacy system that sparked this journey contained decades of refined enginee
 
 *I've kept things high‑level here, skipping the step‑by‑step maths for now, but this algorithm should be enough to whet your appetite. And if the stars align and permission comes through… you might just see the reconstruction code out in the wild.*
 
-*Part of what I could release, I rewrote and is now avaliable at* [GitHub: 3D Facial Reconstruction](github.com/arvinsingh/3DFacialReconstruction) *and* [GitHub: 3D Mesh Projector](github.com/arvinsingh/3dmd-mesh-projector).
+*Part of what I could release, I rewrote and is now avaliable at* [GitHub: 3D Facial Reconstruction](https://github.com/arvinsingh/3DFacialReconstruction) *and* [GitHub: 3D Mesh Projector](https://github.com/arvinsingh/3dmd-mesh-projector).

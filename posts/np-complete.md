@@ -6,7 +6,7 @@ date: Aug 11, 2025
 published: True
 ---
 
-A while back, while working on a computer vision problem, I was building a mesh stitching pipeline using OpenCV and Open3D to align point clouds and reconstruct surface geo from a 3dMD capture setup. I kept running into subtle but persistent dependency issues, Open3D required a specific version of NumPy and Python that clashed with the OpenCV build I was using, and even minor upgrades would break bindings or introduce runtime errors. Managing these conflicts across virtual environments became a constant friction point that slowed down experimentation and made the pipeline fragile.
+While working on a computer vision pipeline to stitch meshes from 3d motion capture setup, I ran into persistent dependency conflicts between OpenCV, Open3D, and their NumPy/Python requirements. Even minor upgrades would break bindings or trigger runtime errors, making the environment fragile and slowing down experimentation.
 
 Switching to <code>uv</code> for Python package management felt like a breath of fresh air: fast installs, clean environments, and reproducible builds. I don’t need to tell a savvy, up-to-date audience how uv outperforms tools like Conda, pip, or Poetry in speed and determinism. What I do want to explore in this post is what lies beneath that performance. Because under the hood, the problem uv is solving, **dependency resolution** is, in theory, NP-complete. And yet, it somehow makes that complexity feel invisible.
 
