@@ -15,7 +15,7 @@ function directoryExists(dirPath: string): boolean {
 
 export const getNotes = cache(async () => {
   // Use path.join with process.cwd() to get absolute path
-  const notesDir = path.join(process.cwd(), 'notes')
+  const notesDir = path.join(process.cwd(), 'content/notes')
 
   // Check if directory exists and return empty array if not
   if (!directoryExists(notesDir)) {

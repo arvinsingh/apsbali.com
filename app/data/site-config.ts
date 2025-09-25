@@ -4,8 +4,77 @@
  * This file contains website-specific configuration and loads personal data from the content repository.
  */
 
-import fs from 'fs'
-import path from 'path'
+export interface PersonalInfo {
+  name: {
+    full: string
+    first: string
+    display: string // For shorter displays
+  }
+  title: string
+  description: string
+  location: string
+  bio: {
+    short: string // For hero sections
+    medium: string // For about pages
+    long?: string // For detailed bio pages
+  }
+  email: string
+  website: {
+    url: string
+    domain: string
+  }
+}
+
+export interface SocialLink {
+  name: string
+  username?: string
+  url: string
+  icon: string
+  display: boolean // Whether to show in UI
+}
+
+export interface ContentConfig {
+  personal: PersonalInfo
+  social: Record<string, SocialLink>
+  repository: {
+    url: string
+    name: string
+  }
+  about: {
+    title: string
+    description: string
+    content: {
+      introduction: string
+      purpose: string
+      closing: string
+      sourceCode: string
+    }
+  }
+  resume: {
+    googleDriveId: string
+    filename: string
+  }
+}
+
+export interface SiteConfig extends ContentConfig {
+  analytics: {
+    enabled: boolean
+    // Add analytics IDs here when needed
+  }
+  features: {
+    blog: boolean
+    projects: boolean
+    notes: boolean
+    resume: boolean
+  }
+}
+
+/**
+ * Site Configuration
+ *
+ * This file contains website-specific configuration.
+ * Personal data is loaded from the content repository.
+ */
 
 export interface PersonalInfo {
   name: {
@@ -72,39 +141,82 @@ export interface SiteConfig extends ContentConfig {
   }
 }
 
-// Load content configuration from content repository at build time
-const loadContentConfig = (): ContentConfig => {
-  try {
-    const configPath = path.join(process.cwd(), 'content', 'config.json')
-    const configContent = fs.readFileSync(configPath, 'utf8')
-    return JSON.parse(configContent)
-  } catch (error) {
-    console.error('Failed to load content configuration:', error)
-    // Fallback configuration - this should be updated when content repo is set up
-    return {
-      personal: {
-        name: { full: "Placeholder", first: "Placeholder", display: "Placeholder" },
-        title: "Placeholder",
-        description: "Placeholder",
-        location: "Placeholder",
-        bio: { short: "Placeholder", medium: "Placeholder" },
-        email: "placeholder@example.com",
-        website: { url: "https://example.com", domain: "example.com" }
-      },
-      social: {},
-      repository: { url: "https://github.com/example/example", name: "example" },
-      about: {
-        title: "About",
-        description: "About",
-        content: { introduction: "", purpose: "", closing: "", sourceCode: "" }
-      },
-      resume: { googleDriveId: "", filename: "" }
+// Content configuration (loaded from content repository)
+const contentConfig: ContentConfig = {
+  personal: {
+    name: {
+      full: "Arvinder Pal Singh Bali",
+      first: "Arvin",
+      display: "Arvin Singh"
+    },
+    title: "Machine Learning Engineer & Developer",
+    description: "Driven by deep learning, haunted by questions of consciousness, and - lately - consumed by GPUs and distributed learning.",
+    location: "Kashmir",
+    bio: {
+      short: "I'm driven by deep learning, haunted by questions of consciousness, and - lately - consumed by GPUs and distributed learning.",
+      medium: "Hello World! My name is Arvin, and I hail from Kashmir - a place where beauty and harsh realities coexist.\n               I'm currently working as a Machine Learning Engineer, tackling challenges in fluency analysis of languages.\n               Beyond the technical realm, I have many hobbies including programming, science fiction, philosophy, gaming, and writing.",
+      long: "My name is Arvin, and I hail from Kashmir - a place where beauty and harsh realities coexist.\n             Growing up surrounded by the region's unyielding challenges has indelibly shaped my outlook on life and instilled in me a relentless curiosity about the world.\n\n             I'm currently working as a Machine Learning Engineer, tackling the challenges like distributed learning and language analysis.\n             Every day, my work fuels my passion for deep learning and the mysteries of consciousness, topics that leave my mind buzzing with questions and ideas.\n\n             Beyond the technical realm, I have many hobbies that keep me grounded and inspired. I delight in programming, devour science fiction novels,\n             and explore the depths of philosophy. When I'm not immersed in code or deep thought, you might find me gaming, world-building, or writing. Each\n             endeavor serves as a channel for the countless thoughts swirling in my head."
+    },
+    email: "arvinsingh@protonmail.com",
+    website: {
+      url: "https://apsbali.com",
+      domain: "apsbali.com"
     }
+  },
+  social: {
+    github: {
+      name: "GitHub",
+      username: "arvinsingh",
+      url: "https://github.com/arvinsingh",
+      icon: "github",
+      display: true
+    },
+    linkedin: {
+      name: "LinkedIn",
+      username: "arvinder-pal-singh",
+      url: "https://www.linkedin.com/in/arvinder-pal-singh/",
+      icon: "linkedin",
+      display: true
+    },
+    twitter: {
+      name: "Twitter",
+      username: "0xarv1nd3r",
+      url: "https://twitter.com/0xarv1nd3r",
+      icon: "twitter",
+      display: true
+    },
+    discord: {
+      name: "Discord",
+      url: "https://discord.com/users/738389772871139330",
+      icon: "discord",
+      display: true
+    },
+    email: {
+      name: "Email",
+      url: "mailto:arvinsingh@protonmail.com",
+      icon: "mail",
+      display: true
+    }
+  },
+  repository: {
+    url: "https://github.com/arvinsingh/apsbali.com",
+    name: "apsbali.com"
+  },
+  about: {
+    title: "About",
+    description: "About this website.",
+    content: {
+      introduction: "Welcome to my blog. This is a simple space where I can jot down my thoughts, share my projects, and capture those fleeting ideas as they come. Here, you'll find a mix of what I'm currently working on - from detailed project notes to everyday reflections.",
+      purpose: "I started this blog as a personal record of my journey, a place where ideas can grow without much fuss. I'm glad you're here to read a bit about what's on my mind, and I hope my posts give you some insight into my thinking process.",
+      closing: "Thank you for stopping by.",
+      sourceCode: "Website source code: "
+    }
+  },
+  resume: {
+    googleDriveId: "1EW9feiNcfrVcYQNC-TW7hNPNSOYtBVF4",
+    filename: "arvin-singh-resume.pdf"
   }
 }
-
-// Load content config at module load time
-const contentConfig = loadContentConfig()
 
 // Merge content config with website-specific config
 export const siteConfig: SiteConfig = {
