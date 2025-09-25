@@ -8,12 +8,12 @@ import type { Post } from '@lib/types'
 
 type Props =
   | {
-    posts: Post[]
-    paginate?: boolean
-  }
+      posts: Post[]
+      paginate?: boolean
+    }
   | {
-    skeleton: true
-  }
+      skeleton: true
+    }
 
 const Posts = (props: Props) => {
   const [showMore, setShowMore] = useState(4)

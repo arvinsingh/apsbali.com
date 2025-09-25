@@ -1,0 +1,15 @@
+{
+  "website": {
+    "owner": "arvinsingh",
+    "name": "apsbali.com",
+    "url": "https://github.com/arvinsingh/apsbali.com",
+    "branch": "master"
+  },
+  "content": {
+    "owner": "arvinsingh",
+    "name": "apsbali-content",
+    "url": "https://github.com/arvinsingh/apsbali-content",
+    "branch": "main",
+    "submodulePath": "content"
+  }
+}

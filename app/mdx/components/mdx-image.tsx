@@ -1,17 +1,10 @@
 import NextImage from 'next/image'
+import { getContentConfig, getWebsiteUrl } from '@/data/content-config'
 
-export function MDXImage({
-  src,
-  alt,
-}: React.DetailedHTMLProps<
-  React.ImgHTMLAttributes<HTMLImageElement>,
-  HTMLImageElement
-> & {
-  src: string
-  alt: string
-}) {
+export default async function MDXImage({ src, alt }: { src: string; alt: string }) {
   let widthFromSrc, heightFromSrc
-  const url = new URL(src, 'https://apsbali.com')
+  const contentConfig = await getContentConfig()
+  const url = new URL(src, getWebsiteUrl(contentConfig))
   const widthParam = url.searchParams.get('w') || url.searchParams.get('width')
   const heightParam =
     url.searchParams.get('h') || url.searchParams.get('height')

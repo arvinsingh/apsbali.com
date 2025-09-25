@@ -14,46 +14,51 @@ interface SlideshowProps {
 
 const Slideshow = ({
   images,
-  alt = "Slideshow image",
+  alt = 'Slideshow image',
   autoplay = true,
   interval = 5000,
-  height = 400
+  height = 400,
 }: SlideshowProps) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isFullscreen, setIsFullscreen] = useState(false)
 
   const nextImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1,
     )
   }, [images.length])
 
   const previousImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1,
     )
   }, [images.length])
 
   const toggleFullscreen = (e: React.MouseEvent) => {
     // Prevent toggling fullscreen when clicking navigation buttons
-    if ((e.target as HTMLElement).closest(`.${styles.navButton}`) ||
-        (e.target as HTMLElement).closest(`.${styles.dotsContainer}`)) {
+    if (
+      (e.target as HTMLElement).closest(`.${styles.navButton}`) ||
+      (e.target as HTMLElement).closest(`.${styles.dotsContainer}`)
+    ) {
       return
     }
     setIsFullscreen(!isFullscreen)
   }
 
-  const handleKeyDown = useCallback((e: KeyboardEvent) => {
-    if (isFullscreen) {
-      if (e.key === 'Escape') {
-        setIsFullscreen(false)
-      } else if (e.key === 'ArrowRight') {
-        nextImage()
-      } else if (e.key === 'ArrowLeft') {
-        previousImage()
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (isFullscreen) {
+        if (e.key === 'Escape') {
+          setIsFullscreen(false)
+        } else if (e.key === 'ArrowRight') {
+          nextImage()
+        } else if (e.key === 'ArrowLeft') {
+          previousImage()
+        }
       }
-    }
-  }, [isFullscreen, nextImage, previousImage])
+    },
+    [isFullscreen, nextImage, previousImage],
+  )
 
   useEffect(() => {
     window.addEventListener('keydown', handleKeyDown)
@@ -92,10 +97,7 @@ const Slideshow = ({
 
   return (
     <>
-      <div
-        className={styles.slideshowContainer}
-        onClick={toggleFullscreen}
-      >
+      <div className={styles.slideshowContainer} onClick={toggleFullscreen}>
         <div className={styles.slideshow} style={{ height: `${height}px` }}>
           {images.map((image, index) => (
             <div
@@ -115,7 +117,10 @@ const Slideshow = ({
 
           <button
             className={`${styles.navButton} ${styles.prevButton}`}
-            onClick={(e) => { e.stopPropagation(); previousImage(); }}
+            onClick={(e) => {
+              e.stopPropagation()
+              previousImage()
+            }}
             aria-label="Previous image"
           >
             &#10094;
@@ -123,7 +128,10 @@ const Slideshow = ({
 
           <button
             className={`${styles.navButton} ${styles.nextButton}`}
-            onClick={(e) => { e.stopPropagation(); nextImage(); }}
+            onClick={(e) => {
+              e.stopPropagation()
+              nextImage()
+            }}
             aria-label="Next image"
           >
             &#10095;
@@ -132,13 +140,16 @@ const Slideshow = ({
           <button
             className={styles.expandButton}
             onClick={toggleFullscreen}
-            aria-label={isFullscreen ? "Exit fullscreen" : "View fullscreen"}
+            aria-label={isFullscreen ? 'Exit fullscreen' : 'View fullscreen'}
           >
             {isFullscreen ? '⟨⟩' : '⟫⟪'}
           </button>
         </div>
 
-        <div className={styles.dotsContainer} onClick={(e) => e.stopPropagation()}>
+        <div
+          className={styles.dotsContainer}
+          onClick={(e) => e.stopPropagation()}
+        >
           {images.map((_, index) => (
             <span
               key={index}
@@ -155,7 +166,10 @@ const Slideshow = ({
       {/* Fullscreen overlay */}
       {isFullscreen && (
         <div className={styles.fullscreenOverlay} onClick={toggleFullscreen}>
-          <div className={styles.fullscreenContent} onClick={(e) => e.stopPropagation()}>
+          <div
+            className={styles.fullscreenContent}
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className={styles.fullscreenImageContainer}>
               {images.map((image, index) => (
                 <div

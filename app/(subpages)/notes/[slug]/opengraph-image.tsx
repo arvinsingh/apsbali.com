@@ -1,4 +1,12 @@
 import { ImageResponse } from 'next/og'
+import notesManifest from '@data/generated/notes-manifest.json'
+
+type ManifestEntry = {
+  slug: string
+  title: string
+  date?: string
+  description?: string
+}
 
 export const size = { width: 1200, height: 600 }
 // TODO: update to support alt once nextjs has a solution for params
@@ -12,24 +20,17 @@ export default async function ({
 }: {
   params: { slug: string }
 }): Promise<ImageResponse> {
-  const res = await fetch(
-    `https://raw.githubusercontent.com/arvinsingh/apsbali.com/master/notes/${params.slug}.mdx`
-  )
+  const manifest = notesManifest as Record<string, ManifestEntry>
+  const entry = manifest[params.slug]
 
-  if (!res.ok) {
+  if (!entry) {
     return new Response('Not found', { status: 404 })
   }
 
-  const text = await res.text()
-  const title = text.match(/title: (.*)/)?.[1]
-  const date = text.match(/date: (.*)/)?.[1]
-
-  if (!title) {
-    return new Response('Missing title', { status: 400 })
-  }
+  const { title, date } = entry
 
   const fontData = await fetch(
-    new URL('../../../fonts/Inter-Medium.ttf', import.meta.url)
+    new URL('../../../fonts/Inter-Medium.ttf', import.meta.url),
   ).then((res) => res.arrayBuffer())
 
   return new ImageResponse(
@@ -118,6 +119,6 @@ export default async function ({
       ],
       width: 1200,
       height: 630,
-    }
+    },
   )
 }

@@ -1,11 +1,15 @@
 import Outline from '@components/layout-outline'
+import { getContentConfig, getWebsiteUrl } from '@/data/content-config'
 
-export const metadata = {
-  title: 'Blog',
-  description: 'Posts and tips.',
-  alternates: {
-    canonical: 'https://apsbali.com/blog',
-  },
+export async function generateMetadata() {
+  const contentConfig = await getContentConfig()
+  return {
+    title: 'Blog',
+    description: 'Posts and tips.',
+    alternates: {
+      canonical: `${getWebsiteUrl(contentConfig)}/blog`,
+    },
+  }
 }
 
 export default function BlogLayout({

@@ -2,9 +2,11 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import path from 'path'
 
-export function readFiles<T extends {
+export function readFiles<
+  T extends {
     date: string
-}>(dirPath: string) {
+  },
+>(dirPath: string) {
   try {
     const files = fs.readdirSync(dirPath)
 
@@ -25,10 +27,10 @@ export function readFiles<T extends {
       }) as (T | null)[]
 
     const filtered = parsed
-        .filter((post) => post !== null)
-        .sort((a, b) =>
-            a && b ? new Date(b.date).getTime() - new Date(a.date).getTime() : 0,
-        ) as T[]
+      .filter((post) => post !== null)
+      .sort((a, b) =>
+        a && b ? new Date(b.date).getTime() - new Date(a.date).getTime() : 0,
+      ) as T[]
     return filtered
   } catch (error) {
     console.error(`Error reading files from ${dirPath}:`, error)

@@ -3,7 +3,7 @@ import NextImage from 'next/image'
 // import Link from '@components/link'
 import { MDXNote } from './mdx-note'
 import { Code } from 'bright'
-import { MDXImage } from './mdx-image'
+import MDXImage from './mdx-image'
 import { MDXMermaid } from './mdx-mermaid'
 import Info from '@components/icons/info'
 import { FileTree, File, Folder } from '@components/file-tree'
@@ -40,8 +40,8 @@ const Diff = dynamic(() => import('./mdx-diff'), {
 })
 
 Code.theme = {
-  dark: "solarized-dark",
-  light: "material-palenight",
+  dark: 'solarized-dark',
+  light: 'material-palenight',
   lightSelector: '[data-theme="light"]',
 }
 
@@ -75,18 +75,16 @@ export const mdxComponents: MDXComponents = {
   >) => {
     // Check if this is a mermaid code block
     const codeElement = children as any
-    const isCodeElement = codeElement?.props?.children && typeof codeElement.props.children === 'string'
+    const isCodeElement =
+      codeElement?.props?.children &&
+      typeof codeElement.props.children === 'string'
     const className = codeElement?.props?.className || ''
 
     if (isCodeElement && className.includes('language-mermaid')) {
       return <MDXMermaid>{codeElement.props.children}</MDXMermaid>
     }
 
-    return (
-      <Code {...props}>
-        {children as any}
-      </Code>
-    )
+    return <Code {...props}>{children as any}</Code>
   },
   img: MDXImage as any,
   Image: NextImage as any,

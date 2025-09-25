@@ -8,10 +8,14 @@ import type { Project } from '@lib/types'
 type Props = {
   projects: Project[]
   showYears: boolean
-  seeMore: boolean;
+  seeMore: boolean
 }
 
-const Projects = ({ projects = [], seeMore = false, showYears = true }: Props) => {
+const Projects = ({
+  projects = [],
+  seeMore = false,
+  showYears = true,
+}: Props) => {
   projects.sort((a, b) => parseInt(b.years[0]) - parseInt(a.years[0]))
 
   return (
@@ -22,7 +26,7 @@ const Projects = ({ projects = [], seeMore = false, showYears = true }: Props) =
             showYears={showYears}
             years={e.years}
             key={e.title}
-            href={e.href || ""}
+            href={e.href || ''}
             title={e.title}
             description={e.description}
             role={e.role}

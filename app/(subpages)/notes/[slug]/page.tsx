@@ -7,14 +7,12 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }))
 }
 
-export default async function NotePage(
-  props: {
-    params: Promise<{
-      slug: string
-    }>
-  }
-) {
-  const params = await props.params;
+export default async function NotePage(props: {
+  params: Promise<{
+    slug: string
+  }>
+}) {
+  const params = await props.params
   const post = await getNote(params.slug)
   if (!post) return notFound()
   return <PostBody>{post?.body}</PostBody>

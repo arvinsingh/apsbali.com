@@ -18,11 +18,11 @@ const thirdPartyPosts: Post[] = []
 //    href: 'https://example.com', // Replace with the actual link
 //    type: 'post', // Specify the type of content
 //  },
-  // Add more posts below using the same structure
+// Add more posts below using the same structure
 //]
 
 export const getPosts = cache(async (includeThirdPartyPosts?: boolean) => {
-  const posts = await fs.readdir('./posts/')
+  const posts = await fs.readdir('./content/posts/')
 
   const postsWithMetadata = await Promise.all(
     posts
@@ -30,7 +30,7 @@ export const getPosts = cache(async (includeThirdPartyPosts?: boolean) => {
         (file) => path.extname(file) === '.md' || path.extname(file) === '.mdx',
       )
       .map(async (file) => {
-        const filePath = `./posts/${file}`
+        const filePath = `./content/posts/${file}`
         const postContent = await fs.readFile(filePath, 'utf8')
         const { data, content } = matter(postContent)
 

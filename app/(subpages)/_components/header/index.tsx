@@ -6,9 +6,7 @@ import ThemeSwitcher from '@components/theme-switcher'
 const Header = ({ children }: PropsWithChildren) => {
   return (
     <div className={styles.nav}>
-      <div className={styles.header}>
-        {children}
-      </div>
+      <div className={styles.header}>{children}</div>
       <div>
         <ThemeSwitcher hideTooltip />
       </div>
@@ -16,4 +14,4 @@ const Header = ({ children }: PropsWithChildren) => {
   )
 }
 
-export default (Header)
+export default Header

@@ -98,7 +98,11 @@ const TimeOfDay = () => {
       type="button"
       aria-label="Time of day"
     >
-      {isClient ? <MemoTimeDisplay format={format} /> : <span>Loading time...</span>}
+      {isClient ? (
+        <MemoTimeDisplay format={format} />
+      ) : (
+        <span>Loading time...</span>
+      )}
     </button>
   )
 }
@@ -118,10 +122,10 @@ const TimeDisplay = ({ format }: { format: Intl.DateTimeFormatOptions }) => {
 
   return (
     <span suppressHydrationWarning>
-    {time.toLocaleTimeString('en-GB', {
-      timeZone: 'Europe/London',
-      ...format,
-    })}
+      {time.toLocaleTimeString('en-GB', {
+        timeZone: 'Europe/London',
+        ...format,
+      })}
     </span>
   )
 }

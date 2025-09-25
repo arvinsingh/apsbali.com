@@ -15,7 +15,12 @@ const Tooltip = ({
   direction?: 'top' | 'right' | 'bottom' | 'left'
 }) => {
   return (
-    <span className={styles.tooltip} data-label={text} data-direction={direction}{...otherProps}>
+    <span
+      className={styles.tooltip}
+      data-label={text}
+      data-direction={direction}
+      {...otherProps}
+    >
       {React.Children.map(
         children,
         (child) =>
@@ -23,7 +28,7 @@ const Tooltip = ({
           React.cloneElement(child, {
             // @ts-ignore
             'aria-label': text,
-          })
+          }),
       )}
     </span>
   )

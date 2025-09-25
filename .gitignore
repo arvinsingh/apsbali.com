@@ -24,3 +24,10 @@ yalc.lock
 # next bundle analyzer
 analyze/
 .env*.local
+
+# Generated content mirrors
+public/content/
+public/blog/
+
+# Generated content manifests
+app/data/generated/
