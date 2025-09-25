@@ -4,12 +4,13 @@
   "scripts": {
     "dev": "next dev",
     "predev": "pnpm run generate:content-manifests",
-    "build": "pnpm run generate:content-manifests && next build",
+    "build": "pnpm run sync:content && pnpm run generate:content-manifests && next build",
     "analyze": "ANALYZE=true pnpm run build",
     "start": "next start",
     "lint": "next lint && prettier --check '**/*.{js,ts,tsx,jsx,md,mdx}' --loglevel warn",
     "format": "prettier --write '**/*.{js,ts,tsx,jsx,md,mdx}'",
-    "generate:content-manifests": "node scripts/generate-content-manifests.mjs"
+    "generate:content-manifests": "node scripts/generate-content-manifests.mjs",
+    "sync:content": "sh -c 'if [ -n \"$GIT_SUBMODULE_TOKEN\" ]; then git config --global url.\"https://$GIT_SUBMODULE_TOKEN@github.com/\".insteadOf https://github.com/; fi && git submodule update --init --recursive'"
   },
   "pre-commit": "lint",
   "license": "MIT",
