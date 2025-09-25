@@ -1,14 +1,16 @@
 import Outline from '@components/layout-outline'
-import { getPersonalInfo } from '@data/site-config'
+import { getContentConfig, getPersonalInfo } from '@/data/content-config'
 
-const personalInfo = getPersonalInfo()
-
-export const metadata = {
-  title: 'Résumé',
-  description: `${personalInfo.name.display}'s professional résumé`,
-  alternates: {
-    canonical: `${personalInfo.website.url}/resume`,
-  },
+export async function generateMetadata() {
+  const contentConfig = await getContentConfig()
+  const personalInfo = getPersonalInfo(contentConfig)
+  return {
+    title: 'Résumé',
+    description: `${personalInfo.name.display}'s professional résumé`,
+    alternates: {
+      canonical: `${personalInfo.website.url}/resume`,
+    },
+  }
 }
 
 export default function ResumeLayout({

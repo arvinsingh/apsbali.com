@@ -23,14 +23,17 @@ export default async function HomePage() {
           <h2 style={{ padding: 'var(--gap-quarter) 0' }}>My projects</h2>
           <ProjectList
             showYears={false}
-            projects={(projects).slice(0, PROJECT_COUNT)}
+            projects={projects.slice(0, PROJECT_COUNT)}
             seeMore={true}
           />
         </>
       )}
       {(features.blog || features.notes) && (
         <>
-          <h2 style={{ padding: 'var(--gap-quarter) 0' }}> Posts and other half-baked thoughts</h2>
+          <h2 style={{ padding: 'var(--gap-quarter) 0' }}>
+            {' '}
+            Posts and other half-baked thoughts
+          </h2>
           <ContentListRSC />
         </>
       )}

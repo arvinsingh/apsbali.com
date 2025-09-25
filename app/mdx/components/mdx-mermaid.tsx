@@ -23,7 +23,12 @@ function extractTextFromChildren(children: React.ReactNode): string {
   }
 
   // Handle text nodes that might be wrapped
-  if (children && typeof children === 'object' && 'type' in children && (children as any).type === 'text') {
+  if (
+    children &&
+    typeof children === 'object' &&
+    'type' in children &&
+    (children as any).type === 'text'
+  ) {
     return (children as any).props?.children || ''
   }
 
@@ -65,7 +70,11 @@ export function MDXMermaid({ children, id }: MermaidProps) {
         .replace(/\r/g, '\n') // Handle old Mac line endings
         .trim() // Remove leading/trailing whitespace
 
-      if (!diagramCode || typeof diagramCode !== 'string' || diagramCode.trim().length === 0) {
+      if (
+        !diagramCode ||
+        typeof diagramCode !== 'string' ||
+        diagramCode.trim().length === 0
+      ) {
         setError('No diagram content provided')
         setIsLoading(false)
         return
@@ -85,50 +94,57 @@ export function MDXMermaid({ children, id }: MermaidProps) {
           securityLevel: 'loose',
           flowchart: {
             htmlLabels: true,
-            curve: 'basis'
+            curve: 'basis',
           },
           themeVariables: {
-            fontFamily: 'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
+            fontFamily:
+              'ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif',
             fontSize: '14px',
-            ...(resolvedTheme === 'dark' ? {
-              // Dark mode colors
-              primaryColor: '#3b82f6',
-              primaryTextColor: '#ffffff',
-              primaryBorderColor: '#3b82f6',
-              lineColor: '#6b7280',
-              sectionBkgColor: 'transparent',
-              altSectionBkgColor: 'transparent',
-              gridColor: '#374151',
-              secondaryColor: '#1f2937',
-              tertiaryColor: '#111827',
-              background: 'transparent',
-              mainBkg: 'transparent',
-              secondBkg: 'transparent',
-              tertiaryBkg: 'transparent',
-            } : {
-              // Light mode colors
-              primaryColor: '#3b82f6',
-              primaryTextColor: '#1f2937',
-              primaryBorderColor: '#3b82f6',
-              lineColor: '#6b7280',
-              sectionBkgColor: 'transparent',
-              altSectionBkgColor: 'transparent',
-              gridColor: '#e5e7eb',
-              secondaryColor: '#f9fafb',
-              tertiaryColor: '#ffffff',
-              background: 'transparent',
-              mainBkg: 'transparent',
-              secondBkg: 'transparent',
-              tertiaryBkg: 'transparent',
-            })
-          }
+            ...(resolvedTheme === 'dark'
+              ? {
+                  // Dark mode colors
+                  primaryColor: '#3b82f6',
+                  primaryTextColor: '#ffffff',
+                  primaryBorderColor: '#3b82f6',
+                  lineColor: '#6b7280',
+                  sectionBkgColor: 'transparent',
+                  altSectionBkgColor: 'transparent',
+                  gridColor: '#374151',
+                  secondaryColor: '#1f2937',
+                  tertiaryColor: '#111827',
+                  background: 'transparent',
+                  mainBkg: 'transparent',
+                  secondBkg: 'transparent',
+                  tertiaryBkg: 'transparent',
+                }
+              : {
+                  // Light mode colors
+                  primaryColor: '#3b82f6',
+                  primaryTextColor: '#1f2937',
+                  primaryBorderColor: '#3b82f6',
+                  lineColor: '#6b7280',
+                  sectionBkgColor: 'transparent',
+                  altSectionBkgColor: 'transparent',
+                  gridColor: '#e5e7eb',
+                  secondaryColor: '#f9fafb',
+                  tertiaryColor: '#ffffff',
+                  background: 'transparent',
+                  mainBkg: 'transparent',
+                  secondBkg: 'transparent',
+                  tertiaryBkg: 'transparent',
+                }),
+          },
         })
 
         // Generate unique ID if not provided
-        const diagramId = id || `mermaid-${Math.random().toString(36).substr(2, 9)}`
+        const diagramId =
+          id || `mermaid-${Math.random().toString(36).substr(2, 9)}`
 
         // Parse and render the diagram
-        const { svg: renderedSvg } = await mermaid.render(diagramId, diagramCode)
+        const { svg: renderedSvg } = await mermaid.render(
+          diagramId,
+          diagramCode,
+        )
 
         if (!isCancelled) {
           setSvg(renderedSvg)
@@ -136,7 +152,9 @@ export function MDXMermaid({ children, id }: MermaidProps) {
         }
       } catch (err) {
         if (!isCancelled) {
-          setError(err instanceof Error ? err.message : 'Failed to render diagram')
+          setError(
+            err instanceof Error ? err.message : 'Failed to render diagram',
+          )
           setIsLoading(false)
         }
       }
@@ -178,14 +196,19 @@ export function MDXMermaid({ children, id }: MermaidProps) {
     }
 
     if (isHovering) {
-      document.addEventListener('wheel', handleWheel, { passive: false, capture: true })
+      document.addEventListener('wheel', handleWheel, {
+        passive: false,
+        capture: true,
+      })
     }
 
     // Add touch listener to reset hover state on mobile
     document.addEventListener('touchstart', handleTouchStart, { passive: true })
 
     return () => {
-      document.removeEventListener('wheel', handleWheel, { capture: true } as any)
+      document.removeEventListener('wheel', handleWheel, {
+        capture: true,
+      } as any)
       document.removeEventListener('touchstart', handleTouchStart)
     }
   }, [isHovering, zoomLevel, isMounted])
@@ -252,14 +275,16 @@ export function MDXMermaid({ children, id }: MermaidProps) {
         <strong>Mermaid Error:</strong> {error}
         <details style={{ marginTop: '8px' }}>
           <summary style={{ cursor: 'pointer' }}>Show diagram code</summary>
-          <pre style={{
-            marginTop: '8px',
-            padding: '8px',
-            backgroundColor: 'rgba(255,255,255,0.1)',
-            borderRadius: '4px',
-            overflow: 'auto',
-            fontSize: '12px'
-          }}>
+          <pre
+            style={{
+              marginTop: '8px',
+              padding: '8px',
+              backgroundColor: 'rgba(255,255,255,0.1)',
+              borderRadius: '4px',
+              overflow: 'auto',
+              fontSize: '12px',
+            }}
+          >
             {diagramCode || 'No valid text content found'}
           </pre>
         </details>
@@ -281,12 +306,15 @@ export function MDXMermaid({ children, id }: MermaidProps) {
           transition: 'opacity 0.2s ease',
         }}
       >
-        <div style={{
-          fontSize: '12px',
-          color: 'var(--gray)',
-          fontStyle: 'italic'
-        }}>
-          💡 Scroll over diagram to zoom • Drag to pan when zoomed or in fullscreen
+        <div
+          style={{
+            fontSize: '12px',
+            color: 'var(--gray)',
+            fontStyle: 'italic',
+          }}
+        >
+          💡 Scroll over diagram to zoom • Drag to pan when zoomed or in
+          fullscreen
         </div>
 
         <div style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
@@ -323,17 +351,19 @@ export function MDXMermaid({ children, id }: MermaidProps) {
             −
           </button>
 
-          <span style={{
-            padding: '6px 12px',
-            fontSize: '12px',
-            color: 'var(--gray)',
-            minWidth: '50px',
-            textAlign: 'center',
-            fontWeight: '500',
-            backgroundColor: 'var(--bg)',
-            border: '1px solid var(--light-gray)',
-            borderRadius: '4px',
-          }}>
+          <span
+            style={{
+              padding: '6px 12px',
+              fontSize: '12px',
+              color: 'var(--gray)',
+              minWidth: '50px',
+              textAlign: 'center',
+              fontWeight: '500',
+              backgroundColor: 'var(--bg)',
+              border: '1px solid var(--light-gray)',
+              borderRadius: '4px',
+            }}
+          >
             {Math.round(zoomLevel * 100)}%
           </span>
 
@@ -420,7 +450,12 @@ export function MDXMermaid({ children, id }: MermaidProps) {
             borderRadius: 'var(--radius)',
             border: '2px solid var(--light-gray)',
             overflow: 'hidden',
-            cursor: (zoomLevel > 1 || isFullscreen) ? (isDragging ? 'grabbing' : 'grab') : 'default',
+            cursor:
+              zoomLevel > 1 || isFullscreen
+                ? isDragging
+                  ? 'grabbing'
+                  : 'grab'
+                : 'default',
             position: 'relative',
             boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
           }}
@@ -575,8 +610,8 @@ export function MDXMermaid({ children, id }: MermaidProps) {
                     from { opacity: 0; transform: translateY(10px); }
                     to { opacity: 1; transform: translateY(0); }
                   }
-                `
-              )
+                `,
+              ),
             }}
           />
         </div>

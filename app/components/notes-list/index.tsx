@@ -8,12 +8,12 @@ import type { Note } from '@lib/types'
 
 type Props =
   | {
-    notes: Note[]
-    paginate?: boolean
-  }
+      notes: Note[]
+      paginate?: boolean
+    }
   | {
-    skeleton: true
-  }
+      skeleton: true
+    }
 
 const NotesList = (props: Props) => {
   const [showMore, setShowMore] = useState(4)

@@ -10,9 +10,7 @@ const Blog = async () => {
     notFound()
   }
 
-  return (
-    <PostListRSC paginate={true} />
-  )
+  return <PostListRSC paginate={true} />
 }
 
 export default Blog

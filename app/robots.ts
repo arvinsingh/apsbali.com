@@ -1,4 +1,8 @@
-export default function robots() {
+import { getContentConfig, getWebsiteUrl } from './data/content-config'
+
+export default async function robots() {
+  const contentConfig = await getContentConfig()
+  const websiteUrl = getWebsiteUrl(contentConfig)
   return {
     rules: [
       {
@@ -6,7 +10,7 @@ export default function robots() {
         allow: ['/'],
       },
     ],
-    sitemap: 'https://apsbali.com/sitemap.xml',
-    host: 'https://apsbali.com',
+    sitemap: `${websiteUrl}/sitemap.xml`,
+    host: websiteUrl,
   }
 }

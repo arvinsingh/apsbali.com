@@ -53,19 +53,19 @@ const useGol = ({
         `attribute vec2 coord;
                     void main(void) {
                         gl_Position = vec4(coord, 0.0, 0.1);
-                    }`
+                    }`,
       )
 
       const fragShaderDisplay = loadShader(
         gl,
         gl.FRAGMENT_SHADER,
-        stateShader(size)
+        stateShader(size),
       )
 
       const fragShaderLogic = loadShader(
         gl,
         gl.FRAGMENT_SHADER,
-        textureShader(size)
+        textureShader(size),
       )
 
       if (!vertexShader || !fragShaderDisplay || !fragShaderLogic) {
@@ -84,12 +84,12 @@ const useGol = ({
       const stepperProgCoordLoc = gl.getAttribLocation(stepperProg, 'coord')
       const stepperProgPreviousStateLoc = gl.getUniformLocation(
         stepperProg,
-        'previousState'
+        'previousState',
       )
 
       const displayProgStateLocation = gl.getUniformLocation(
         displayProg,
-        'state'
+        'state',
       )
 
       const vertexBuffer = gl.createBuffer()
@@ -101,7 +101,7 @@ const useGol = ({
       gl.bufferData(
         gl.ARRAY_BUFFER,
         new Float32Array(positions),
-        gl.STATIC_DRAW
+        gl.STATIC_DRAW,
       )
 
       const elementBuffer = gl.createBuffer()
@@ -109,7 +109,7 @@ const useGol = ({
       gl.bufferData(
         gl.ELEMENT_ARRAY_BUFFER,
         new Uint8Array([0, 1, 2, 3]),
-        gl.STATIC_DRAW
+        gl.STATIC_DRAW,
       )
 
       const startState = new Uint8Array(size * size * 3)
@@ -132,7 +132,7 @@ const useGol = ({
         0,
         gl.RGB,
         gl.UNSIGNED_BYTE,
-        startState
+        startState,
       )
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST)
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST)
@@ -150,7 +150,7 @@ const useGol = ({
         0,
         gl.RGB,
         gl.UNSIGNED_BYTE,
-        startState
+        startState,
       )
       gl.generateMipmap(gl.TEXTURE_2D)
       const framebuffers = [gl.createFramebuffer(), gl.createFramebuffer()]
@@ -161,7 +161,7 @@ const useGol = ({
         gl.COLOR_ATTACHMENT0,
         gl.TEXTURE_2D,
         texture0,
-        0
+        0,
       )
 
       gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffers[1])
@@ -170,7 +170,7 @@ const useGol = ({
         gl.COLOR_ATTACHMENT0,
         gl.TEXTURE_2D,
         texture1,
-        0
+        0,
       )
 
       let nextStateIndex = 0

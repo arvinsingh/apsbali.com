@@ -18,7 +18,7 @@ const thirdPartyPosts: Post[] = []
 //    href: 'https://example.com', // Replace with the actual link
 //    type: 'post', // Specify the type of content
 //  },
-  // Add more posts below using the same structure
+// Add more posts below using the same structure
 //]
 
 export const getPosts = cache(async (includeThirdPartyPosts?: boolean) => {

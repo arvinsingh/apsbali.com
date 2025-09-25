@@ -10,9 +10,7 @@ const Notes = async () => {
     notFound()
   }
 
-  return (
-    <NotesListRSC paginate={true} />
-  )
+  return <NotesListRSC paginate={true} />
 }
 
 export default Notes

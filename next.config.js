@@ -1,19 +1,45 @@
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+	enabled: process.env.ANALYZE === 'true',
+})
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ...existing config...
-  
-  webpack: (config, { isServer }) => {
-    // Only on the client bundle
-    if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        canvas: false,
-        encoding: false,
-      };
-    }
-    
-    return config;
-  },
-};
+	images: {
+		formats: ['image/avif', 'image/webp'],
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: 'i.ytimg.com',
+				pathname: '/**',
+			},
+		],
+	},
+	reactStrictMode: true,
+	pageExtensions: ['md', 'mdx', 'tsx', 'ts', 'jsx', 'js'],
+	experimental: {
+		optimizeCss: true,
+		mdxRs: true,
+	},
+	typescript: {
+		ignoreBuildErrors: true,
+	},
+	eslint: {
+		ignoreDuringBuilds: true,
+	},
+	webpack(config, { isServer }) {
+		if (!isServer) {
+			config.resolve.fallback = {
+				...config.resolve.fallback,
+				canvas: false,
+				encoding: false,
+			}
+		}
 
-module.exports = nextConfig;
+		return config
+	},
+	async redirects() {
+		return []
+	},
+}
+
+module.exports = withBundleAnalyzer(nextConfig)

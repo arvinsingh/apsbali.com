@@ -1,4 +1,4 @@
-import { getPersonalInfo } from '@data/site-config'
+import { getContentConfig, getPersonalInfo, getTwitterHandle } from '@/data/content-config'
 
 type Props = {
   title: string
@@ -11,7 +11,7 @@ type Props = {
   path: `/${string}`
 }
 
-export function getMetadata({
+export async function getMetadata({
   title,
   description,
   image,
@@ -21,7 +21,8 @@ export function getMetadata({
   author,
   path,
 }: Props) {
-  const personalInfo = getPersonalInfo()
+  const contentConfig = await getContentConfig()
+  const personalInfo = getPersonalInfo(contentConfig)
   const defaultAuthor = personalInfo.name.display
   const finalAuthor = author || defaultAuthor
 
@@ -29,8 +30,8 @@ export function getMetadata({
     process.env.NODE_ENV === 'production'
       ? personalInfo.website.url
       : process.env.NEXT_PUBLIC_VERCEL_URL
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : 'http://localhost:3000'
+        ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+        : 'http://localhost:3000'
 
   return (
     <>
@@ -56,9 +57,15 @@ export function getMetadata({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@0xarv1nd3r" /> {/* This could be moved to config */}
-      <meta property="og:site_name" content={`${personalInfo.name.first}'s site`} />
-      <meta name="apple-mobile-web-app-title" content={personalInfo.name.first} />
+      <meta name="twitter:site" content={`@${getTwitterHandle(contentConfig)}`} />
+      <meta
+        property="og:site_name"
+        content={`${personalInfo.name.first}'s site`}
+      />
+      <meta
+        name="apple-mobile-web-app-title"
+        content={personalInfo.name.first}
+      />
       <meta name="author" content={finalAuthor} />
       <meta property="og:type" content="website" />
       <meta charSet="utf-8" />

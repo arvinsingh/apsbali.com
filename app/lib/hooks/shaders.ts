@@ -2,7 +2,7 @@
 export function loadShader(
   gl: WebGLRenderingContext,
   type: number,
-  source: string
+  source: string,
 ) {
   const shader = gl.createShader(type)
 
@@ -24,7 +24,7 @@ export function loadShader(
 export function createProgram(
   gl: WebGLRenderingContext,
   vertexShader: WebGLShader,
-  fragmentShader: WebGLShader
+  fragmentShader: WebGLShader,
 ) {
   const program = gl.createProgram()
 
@@ -40,7 +40,7 @@ export function createProgram(
   if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
     console.error(
       'createProgram: unable to initialize the shader program: ',
-      gl.getProgramInfoLog(program)
+      gl.getProgramInfoLog(program),
     )
   }
 

@@ -1,7 +1,8 @@
 /**
  * Site Configuration
  *
- * This file contains website-specific configuration and loads personal data from the content repository.
+ * This file contains static website configuration that doesn't change between different content repositories.
+ * Personal data and content configuration is loaded dynamically from the content repository.
  */
 
 export interface PersonalInfo {
@@ -56,7 +57,7 @@ export interface ContentConfig {
   }
 }
 
-export interface SiteConfig extends ContentConfig {
+export interface SiteConfig {
   analytics: {
     enabled: boolean
     // Add analytics IDs here when needed
@@ -66,170 +67,31 @@ export interface SiteConfig extends ContentConfig {
     projects: boolean
     notes: boolean
     resume: boolean
+  }
+  build: {
+    generateStaticParams: boolean
+    revalidate: number
   }
 }
 
 /**
- * Site Configuration
- *
- * This file contains website-specific configuration.
- * Personal data is loaded from the content repository.
+ * Static site configuration
+ * This contains only website features and settings that don't change between different content repositories
  */
-
-export interface PersonalInfo {
-  name: {
-    full: string
-    first: string
-    display: string // For shorter displays
-  }
-  title: string
-  description: string
-  location: string
-  bio: {
-    short: string // For hero sections
-    medium: string // For about pages
-    long?: string // For detailed bio pages
-  }
-  email: string
-  website: {
-    url: string
-    domain: string
-  }
-}
-
-export interface SocialLink {
-  name: string
-  username?: string
-  url: string
-  icon: string
-  display: boolean // Whether to show in UI
-}
-
-export interface ContentConfig {
-  personal: PersonalInfo
-  social: Record<string, SocialLink>
-  repository: {
-    url: string
-    name: string
-  }
-  about: {
-    title: string
-    description: string
-    content: {
-      introduction: string
-      purpose: string
-      closing: string
-      sourceCode: string
-    }
-  }
-  resume: {
-    googleDriveId: string
-    filename: string
-  }
-}
-
-export interface SiteConfig extends ContentConfig {
-  analytics: {
-    enabled: boolean
-    // Add analytics IDs here when needed
-  }
-  features: {
-    blog: boolean
-    projects: boolean
-    notes: boolean
-    resume: boolean
-  }
-}
-
-// Content configuration (loaded from content repository)
-const contentConfig: ContentConfig = {
-  personal: {
-    name: {
-      full: "Arvinder Pal Singh Bali",
-      first: "Arvin",
-      display: "Arvin Singh"
-    },
-    title: "Machine Learning Engineer & Developer",
-    description: "Driven by deep learning, haunted by questions of consciousness, and - lately - consumed by GPUs and distributed learning.",
-    location: "Kashmir",
-    bio: {
-      short: "I'm driven by deep learning, haunted by questions of consciousness, and - lately - consumed by GPUs and distributed learning.",
-      medium: "Hello World! My name is Arvin, and I hail from Kashmir - a place where beauty and harsh realities coexist.\n               I'm currently working as a Machine Learning Engineer, tackling challenges in fluency analysis of languages.\n               Beyond the technical realm, I have many hobbies including programming, science fiction, philosophy, gaming, and writing.",
-      long: "My name is Arvin, and I hail from Kashmir - a place where beauty and harsh realities coexist.\n             Growing up surrounded by the region's unyielding challenges has indelibly shaped my outlook on life and instilled in me a relentless curiosity about the world.\n\n             I'm currently working as a Machine Learning Engineer, tackling the challenges like distributed learning and language analysis.\n             Every day, my work fuels my passion for deep learning and the mysteries of consciousness, topics that leave my mind buzzing with questions and ideas.\n\n             Beyond the technical realm, I have many hobbies that keep me grounded and inspired. I delight in programming, devour science fiction novels,\n             and explore the depths of philosophy. When I'm not immersed in code or deep thought, you might find me gaming, world-building, or writing. Each\n             endeavor serves as a channel for the countless thoughts swirling in my head."
-    },
-    email: "arvinsingh@protonmail.com",
-    website: {
-      url: "https://apsbali.com",
-      domain: "apsbali.com"
-    }
-  },
-  social: {
-    github: {
-      name: "GitHub",
-      username: "arvinsingh",
-      url: "https://github.com/arvinsingh",
-      icon: "github",
-      display: true
-    },
-    linkedin: {
-      name: "LinkedIn",
-      username: "arvinder-pal-singh",
-      url: "https://www.linkedin.com/in/arvinder-pal-singh/",
-      icon: "linkedin",
-      display: true
-    },
-    twitter: {
-      name: "Twitter",
-      username: "0xarv1nd3r",
-      url: "https://twitter.com/0xarv1nd3r",
-      icon: "twitter",
-      display: true
-    },
-    discord: {
-      name: "Discord",
-      url: "https://discord.com/users/738389772871139330",
-      icon: "discord",
-      display: true
-    },
-    email: {
-      name: "Email",
-      url: "mailto:arvinsingh@protonmail.com",
-      icon: "mail",
-      display: true
-    }
-  },
-  repository: {
-    url: "https://github.com/arvinsingh/apsbali.com",
-    name: "apsbali.com"
-  },
-  about: {
-    title: "About",
-    description: "About this website.",
-    content: {
-      introduction: "Welcome to my blog. This is a simple space where I can jot down my thoughts, share my projects, and capture those fleeting ideas as they come. Here, you'll find a mix of what I'm currently working on - from detailed project notes to everyday reflections.",
-      purpose: "I started this blog as a personal record of my journey, a place where ideas can grow without much fuss. I'm glad you're here to read a bit about what's on my mind, and I hope my posts give you some insight into my thinking process.",
-      closing: "Thank you for stopping by.",
-      sourceCode: "Website source code: "
-    }
-  },
-  resume: {
-    googleDriveId: "1EW9feiNcfrVcYQNC-TW7hNPNSOYtBVF4",
-    filename: "arvin-singh-resume.pdf"
-  }
-}
-
-// Merge content config with website-specific config
 export const siteConfig: SiteConfig = {
-  ...contentConfig,
   analytics: {
-    enabled: true
+    enabled: false, // Enable when you add analytics
   },
   features: {
     blog: true,
     projects: true,
     notes: true,
-    resume: true
-  }
+    resume: true,
+  },
+  build: {
+    generateStaticParams: true,
+    revalidate: 3600, // Revalidate every hour
+  },
 }
 
 // Project display settings
@@ -240,7 +102,7 @@ export interface ProjectSettings {
 
 export const projectSettings: ProjectSettings = {
   featuredCount: 6,
-  showYearsOnCard: true
+  showYearsOnCard: true,
 }
 
 // Blog configuration
@@ -255,7 +117,7 @@ export const blogSettings: BlogSettings = {
   postsPerPage: 10,
   featuredPostsCount: 3,
   categories: ['technical', 'personal', 'philosophy', 'projects'],
-  defaultCategory: 'personal'
+  defaultCategory: 'personal',
 }
 
 // Notes configuration
@@ -266,20 +128,10 @@ export interface NotesSettings {
 
 export const notesSettings: NotesSettings = {
   notesPerPage: 20,
-  typesOrder: ['note', 'snippet', 'tip']
+  typesOrder: ['note', 'snippet', 'tip'],
 }
 
-// Helper functions to access config data
-export const getPersonalInfo = () => siteConfig.personal
-export const getSocialLinks = (displayOnly = true) => {
-  const links = siteConfig.social
-  return displayOnly
-    ? Object.fromEntries(Object.entries(links).filter(([, link]) => link.display))
-    : links
-}
-export const getRepositoryConfig = () => siteConfig.repository
-export const getAboutConfig = () => siteConfig.about
-export const getResumeConfig = () => siteConfig.resume
+// Static helper functions for site config
 export const getFeatures = () => siteConfig.features
 export const getProjectSettings = () => projectSettings
 export const getBlogSettings = () => blogSettings
@@ -294,8 +146,7 @@ export const getEnabledRoutes = () => {
     { path: '/blog', name: 'Blog', enabled: features.blog },
     { path: '/projects', name: 'Projects', enabled: features.projects },
     { path: '/notes', name: 'Notes', enabled: features.notes },
-    { path: '/resume', name: 'Resume', enabled: features.resume }
+    { path: '/resume', name: 'Resume', enabled: features.resume },
   ]
-
-  return routes.filter(route => route.enabled)
+  return routes.filter((route) => route.enabled)
 }

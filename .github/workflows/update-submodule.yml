@@ -12,16 +12,23 @@ jobs:
         with:
           submodules: true
           token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Determine submodule path
+        id: repo-config
+        run: |
+          SUBMODULE_PATH=$(node -e "try { const config = require('./repo.config.json'); process.stdout.write((config && config.content && config.content.submodulePath) || 'content'); } catch (error) { process.stdout.write('content'); }")
+          echo "submodule_path=$SUBMODULE_PATH" >> $GITHUB_OUTPUT
       
       - name: Update submodule to latest
         run: |
-          git submodule update --remote content
+          git submodule update --remote "${{ steps.repo-config.outputs.submodule_path }}"
           
       - name: Commit and push submodule update
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add content
+          SUBMODULE_PATH="${{ steps.repo-config.outputs.submodule_path }}"
+          git add "$SUBMODULE_PATH"
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
