@@ -1,0 +1,30 @@
+name: Update Content Submodule
+on:
+  repository_dispatch:
+    types: [content-updated]
+
+jobs:
+  update-submodule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository with submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Update submodule to latest
+        run: |
+          git submodule update --remote content
+          
+      - name: Commit and push submodule update
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add content
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update content submodule [skip ci]"
+            git push
+          fi

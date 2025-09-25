@@ -4,7 +4,7 @@ import path from 'path'
 import { cache } from 'react'
 
 const loadProjectsFromFile = cache(async (): Promise<Project[]> => {
-	const projectsPath = path.join(process.cwd(), 'projects', 'projects.json')
+	const projectsPath = path.join(process.cwd(), 'content/projects', 'projects.json')
 	const fileContent = await fs.readFile(projectsPath, 'utf8')
 	const data = JSON.parse(fileContent)
 
