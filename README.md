@@ -88,7 +88,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 - **`scripts/`** – Utility scripts (for example, `generate-content-manifests.mjs`).
 
 ## How to Add a Blog Post
-Clone the following example repo [example content repo](git@github.com:arvinsingh/apsbali.com-example-content.git)
+Clone the following example repo [example content repo](github.com/arvinsingh/apsbali.com-example-content.git)
 
 ```
 git clone git@github.com:arvinsingh/apsbali.com-example-content.git
