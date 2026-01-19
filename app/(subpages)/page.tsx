@@ -5,7 +5,7 @@ import AboutMe from '@components/aboutme'
 import { getProjects } from '@lib/projects'
 import { getFeatures } from '@data/site-config'
 import styles from './page.module.css'
-import TimeOfDay from '../../timer'
+import TimeOfDay from '../timer'
 import { ContentListRSC } from '@components/content-list'
 
 const PROJECT_COUNT = 3

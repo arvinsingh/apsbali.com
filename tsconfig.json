@@ -10,10 +10,13 @@
     ],
     "baseUrl": ".",
     "allowJs": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "target": "es2020",
     "module": "esnext",
-    "lib": ["dom", "es2019"],
+    "lib": [
+      "dom",
+      "es2019"
+    ],
     "noEmit": true,
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
@@ -34,15 +37,38 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@*": ["./app/*"],
-      "@data/*": ["./app/data/*"],
-      "@data": ["./app/data"]
+      "@*": [
+        "./app/*"
+      ],
+      "@data/*": [
+        "./app/data/*"
+      ],
+      "@data": [
+        "./app/data"
+      ]
     },
     "incremental": true
   },
-  "exclude": ["node_modules"],
-  "include": ["**/*.ts", "**/*.tsx", "**/*.js", ".next/types/**/*.ts"],
+  "exclude": [
+    "node_modules"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.js",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts"
+  ],
   "mdx": {
-    "plugins": [["remark-frontmatter", ["toml", "yaml"]], "remark-gfm"]
+    "plugins": [
+      [
+        "remark-frontmatter",
+        [
+          "toml",
+          "yaml"
+        ]
+      ],
+      "remark-gfm"
+    ]
   }
 }

@@ -10,19 +10,6 @@ const PUBLIC_DIR = path.join(process.cwd(), 'public')
 const PUBLIC_CONTENT_DIR = path.join(PUBLIC_DIR, 'content')
 
 function getContentPath() {
-  // In development, if local sibling repo exists, use it
-  if (process.env.NODE_ENV !== 'production') {
-      const localContent = path.resolve(process.cwd(), '../apsbali-content')
-      try {
-          if (fsSync.existsSync(localContent)) {
-              console.log(`[Script] Using local content path: ${localContent}`)
-              return localContent
-          }
-      } catch (e) {
-          // ignore
-      }
-  }
-
   return path.join(process.cwd(), 'content')
 }
 
