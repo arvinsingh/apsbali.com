@@ -11,6 +11,7 @@ import Home from '@components/icons/home'
 import { Tweet } from 'react-tweet'
 // import Diff from './mdx-diff'
 import dynamic from 'next/dynamic'
+import { TableOfContents } from '@components/toc'
 
 // Import the Slideshow component
 const Slideshow = dynamic(() => import('@components/slideshow'), {
@@ -86,6 +87,11 @@ export const mdxComponents: MDXComponents = {
 
     return <Code {...props}>{children as any}</Code>
   },
+  table: (props) => (
+    <div className="table-wrapper">
+      <table {...props} />
+    </div>
+  ),
   img: MDXImage as any,
   Image: NextImage as any,
   Details: ({
@@ -117,6 +123,7 @@ export const mdxComponents: MDXComponents = {
   Slideshow: Slideshow as any,
   // Add the Mermaid component
   Mermaid: MDXMermaid as any,
+  TOC: TableOfContents as any,
 
   Tweet: (props) => (
     <div
