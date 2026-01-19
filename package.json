@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next dev",
     "predev": "pnpm run generate:content-manifests",
-    "build": "pnpm run sync:content && NODE_ENV=production pnpm run generate:content-manifests && next build",
+    "build": "pnpm run sync:content && NODE_ENV=production pnpm run generate:content-manifests && next build --webpack",
     "analyze": "ANALYZE=true pnpm run build",
     "start": "next start",
     "lint": "next lint && prettier --check '**/*.{js,ts,tsx,jsx,md,mdx}' --loglevel warn",
