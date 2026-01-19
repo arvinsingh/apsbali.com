@@ -3,6 +3,7 @@ import path from 'path'
 import type { Post } from './types'
 import fs from 'fs/promises'
 import { cache } from 'react'
+import { getContentPath } from './content-path'
 //import { unstable_cache } from 'next/cache'
 
 const thirdPartyPosts: Post[] = []
@@ -22,7 +23,9 @@ const thirdPartyPosts: Post[] = []
 //]
 
 export const getPosts = cache(async (includeThirdPartyPosts?: boolean) => {
-  const posts = await fs.readdir('./content/posts/')
+  const contentPath = getContentPath()
+  const postsDir = path.join(contentPath, 'posts')
+  const posts = await fs.readdir(postsDir)
 
   const postsWithMetadata = await Promise.all(
     posts
@@ -30,7 +33,7 @@ export const getPosts = cache(async (includeThirdPartyPosts?: boolean) => {
         (file) => path.extname(file) === '.md' || path.extname(file) === '.mdx',
       )
       .map(async (file) => {
-        const filePath = `./content/posts/${file}`
+        const filePath = path.join(postsDir, file)
         const postContent = await fs.readFile(filePath, 'utf8')
         const { data, content } = matter(postContent)
 

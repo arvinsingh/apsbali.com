@@ -59,12 +59,14 @@ const FALLBACK_CONTENT_CONFIG: ContentConfig = {
 
 const loadConfigFromFilesystem = cache(async (): Promise<ContentConfig | null> => {
   try {
-    const [fs, pathModule] = await Promise.all([
+    const [fs, pathModule, { getContentPath }] = await Promise.all([
       import('fs/promises'),
       import('path'),
+      import('@/lib/content-path'),
     ])
 
-    const configPath = pathModule.join(process.cwd(), 'content', 'config.json')
+    const contentPath = getContentPath()
+    const configPath = pathModule.join(contentPath, 'config.json')
     const fileContents = await fs.readFile(configPath, 'utf-8')
     return JSON.parse(fileContents) as ContentConfig
   } catch (error) {

@@ -1,14 +1,33 @@
 #!/usr/bin/env node
 
 import fs from 'node:fs/promises'
+import fsSync from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 
-const CONTENT_DIR = path.join(process.cwd(), 'content')
 const OUTPUT_DIR = path.join(process.cwd(), 'app', 'data', 'generated')
-const CONTENT_PUBLIC_DIR = path.join(CONTENT_DIR, 'public')
 const PUBLIC_DIR = path.join(process.cwd(), 'public')
 const PUBLIC_CONTENT_DIR = path.join(PUBLIC_DIR, 'content')
+
+function getContentPath() {
+  // In development, if local sibling repo exists, use it
+  if (process.env.NODE_ENV !== 'production') {
+      const localContent = path.resolve(process.cwd(), '../apsbali-content')
+      try {
+          if (fsSync.existsSync(localContent)) {
+              console.log(`[Script] Using local content path: ${localContent}`)
+              return localContent
+          }
+      } catch (e) {
+          // ignore
+      }
+  }
+
+  return path.join(process.cwd(), 'content')
+}
+
+const CONTENT_DIR = getContentPath()
+const CONTENT_PUBLIC_DIR = path.join(CONTENT_DIR, 'public')
 
 async function ensureOutputDir() {
   await fs.mkdir(OUTPUT_DIR, { recursive: true })

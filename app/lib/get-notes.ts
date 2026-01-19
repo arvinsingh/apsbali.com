@@ -3,6 +3,7 @@ import { readFiles } from './read-files'
 import { Note } from './types'
 import path from 'path'
 import fs from 'fs'
+import { getContentPath } from './content-path'
 
 // Helper function to check if directory exists
 function directoryExists(dirPath: string): boolean {
@@ -14,8 +15,9 @@ function directoryExists(dirPath: string): boolean {
 }
 
 export const getNotes = cache(async () => {
-  // Use path.join with process.cwd() to get absolute path
-  const notesDir = path.join(process.cwd(), 'content/notes')
+  // Use getContentPath to get the correct content directory
+  const contentPath = getContentPath()
+  const notesDir = path.join(contentPath, 'notes')
 
   // Check if directory exists and return empty array if not
   if (!directoryExists(notesDir)) {
@@ -24,6 +26,7 @@ export const getNotes = cache(async () => {
   }
 
   const notesWithMetadata = readFiles<Note>(notesDir)
+
 
   const filtered = notesWithMetadata
     .filter((post) => post !== null)
