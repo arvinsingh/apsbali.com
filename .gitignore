@@ -9,6 +9,7 @@ packages/
 yalc.lock
 .yalc
 .env*
+public/
 
 .vercel
 
