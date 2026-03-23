@@ -19,6 +19,8 @@ export function PostBody({ children }: { children: string }) {
         <MDXRemote
           source={children}
         options={{
+          parseFrontmatter: true,
+          blockJS: false,
           mdxOptions: {
             remarkPlugins: [
               remarkGfm,
