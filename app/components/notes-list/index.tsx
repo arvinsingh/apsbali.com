@@ -41,8 +41,7 @@ const NotesList = (props: Props) => {
 
         return (
           <BlockEntry
-            // TODO: Math.random is a bad hack.
-            key={`note-item-${note.slug || Math.random()}`}
+            key={`note-item-${note.slug}`}
             href={`/notes/${note.slug}`}
             title={note.title}
             date={new Date(date)}
@@ -53,7 +52,7 @@ const NotesList = (props: Props) => {
       {paginate && showMore < notes.length && (
         <button
           onClick={() => {
-            setShowMore(showMore + 4)
+            setShowMore((count) => count + 4)
           }}
           className={styles.button}
         >

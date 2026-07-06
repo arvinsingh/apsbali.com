@@ -15,10 +15,12 @@
   --header-height: 48px;
 
   /* Typography */
-  --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Roboto',
+  --font-sans:
+    var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Roboto',
     'Helvetica Neue', sans-serif;
-  --font-mono: var(--font-geist-mono), 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo',
-    monospace;
+  --font-mono:
+    var(--font-geist-mono), 'SFMono-Regular', 'Consolas', 'Liberation Mono',
+    'Menlo', monospace;
 
   /* Transitions */
   --transition: 0.1s ease-in-out;
@@ -167,7 +169,9 @@ a.reset {
   outline: none;
   color: var(--link);
   text-decoration: none;
-  transition: background-color var(--transition), color var(--transition);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
 }
 
 p a:hover,

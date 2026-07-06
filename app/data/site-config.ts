@@ -52,8 +52,10 @@ export interface ContentConfig {
     }
   }
   resume: {
-    googleDriveId: string
+    googleDriveId?: string
     filename: string
+    summary?: string
+    highlights?: string[]
   }
 }
 

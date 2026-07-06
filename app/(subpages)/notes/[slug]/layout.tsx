@@ -64,7 +64,7 @@ export default async function PostLayout(props: {
       <div className={styles.wrapper}>
         <span className={styles.date}>{date}</span>
       </div>
-      <article>
+      <article className={styles.article}>
         <h1 className={styles.title}>{title}</h1>
         {children}
       </article>

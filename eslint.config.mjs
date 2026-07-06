@@ -23,9 +23,13 @@ const projectRules = {
     'error',
     { allowShortCircuit: true, allowTernary: true },
   ],
+  'react-hooks/set-state-in-effect': 'off',
 }
 
-export default [
+const eslintConfig = [
+  {
+    ignores: ['.next/**', 'content/**', 'out/**', 'public/**'],
+  },
   ...nextVitals,
   mdx,
   flatCodeBlocks,
@@ -37,3 +41,5 @@ export default [
     },
   },
 ]
+
+export default eslintConfig

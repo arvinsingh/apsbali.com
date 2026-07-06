@@ -4,12 +4,10 @@ import { SocialButton } from './social-button'
 import styles from './socials.module.css'
 import { GitHub, Discord, Mail, LinkedIn, FileText } from '@components/icons'
 import { siteConfig } from '@data/site-config'
-import { useSocialLinks, useContent } from '../providers/content-provider'
+import { useSocialLinks } from '../providers/content-provider'
 
 const Socials = (props: Omit<React.HTMLProps<HTMLDivElement>, 'className'>) => {
   const socialLinks = useSocialLinks(true)
-  const content = useContent()
-  const resumeConfig = content.resume
 
   // Convert to legacy format for existing component structure
   const convertedLinks = {

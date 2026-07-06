@@ -173,7 +173,8 @@
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.fullscreenPrevButton, .fullscreenNextButton {
+.fullscreenPrevButton,
+.fullscreenNextButton {
   width: 60px;
   height: 60px;
   font-size: 30px;
@@ -200,24 +201,27 @@
 }
 
 @media (max-width: 768px) {
-  .navButton, .fullscreenPrevButton, .fullscreenNextButton {
+  .navButton,
+  .fullscreenPrevButton,
+  .fullscreenNextButton {
     width: 30px;
     height: 30px;
     font-size: 14px;
   }
-  
-  .fullscreenPrevButton, .fullscreenNextButton {
+
+  .fullscreenPrevButton,
+  .fullscreenNextButton {
     width: 40px;
     height: 40px;
     font-size: 20px;
   }
-  
+
   .dot {
     height: 8px;
     width: 8px;
     margin: 0 4px;
   }
-  
+
   .closeButton {
     width: 30px;
     height: 30px;
@@ -225,7 +229,7 @@
     top: 10px;
     right: 10px;
   }
-  
+
   .expandButton {
     width: 30px;
     height: 25px;

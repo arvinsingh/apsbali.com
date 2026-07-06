@@ -1,4 +1,4 @@
 declare module '*.mdx' {
-  let MDXComponent: (props) => JSX.Element
+  const MDXComponent: (_props: Record<string, unknown>) => JSX.Element
   export default MDXComponent
 }

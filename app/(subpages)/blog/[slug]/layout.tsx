@@ -5,6 +5,10 @@ import PostFooter from '@components/content-footer/post-footer'
 import styles from './layout.module.css'
 import { Metadata } from 'next'
 import { getContentConfig, getWebsiteUrl } from '@/data/content-config'
+import {
+  extractMarkdownHeadings,
+  type MarkdownHeading,
+} from '@/lib/markdown-headings'
 
 export async function generateStaticParams() {
   const posts = await getPosts()
@@ -48,6 +52,38 @@ async function getData({ slug }: { slug: string }) {
     ...rest,
   }
 }
+
+function BlogOutline({ headings }: { headings: MarkdownHeading[] }) {
+  if (!headings.length) {
+    return null
+  }
+
+  const renderOutlineLinks = () => (
+    <ol className={styles.outlineList}>
+      {headings.map((heading) => (
+        <li key={heading.id} className={styles[`depth${heading.depth}`]}>
+          <a className={styles.outlineLink} href={`#${heading.id}`}>
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ol>
+  )
+
+  return (
+    <>
+      <nav className={styles.outlineDesktop} aria-label="Post sections">
+        <p className={styles.outlineTitle}>On this page</p>
+        {renderOutlineLinks()}
+      </nav>
+      <details className={styles.outlineMobile}>
+        <summary>On this page</summary>
+        <nav aria-label="Post sections">{renderOutlineLinks()}</nav>
+      </details>
+    </>
+  )
+}
+
 export default async function PostLayout(props: {
   children: React.ReactNode
   params: Promise<{
@@ -58,7 +94,9 @@ export default async function PostLayout(props: {
 
   const { children } = props
 
-  const { previous, next, title, date, lastModified } = await getData(params)
+  const { previous, next, title, date, lastModified, body } =
+    await getData(params)
+  const headings = extractMarkdownHeadings(body)
 
   const lastModifiedDate = lastModified
     ? new Date(lastModified).toLocaleDateString('en-US', {
@@ -79,10 +117,13 @@ export default async function PostLayout(props: {
         ) : null}
         {/* {updatedViews && <FadeIn>{updatedViews} views</FadeIn>} */}
       </div>
-      <article>
-        <h1 className={styles.title}>{title}</h1>
-        {children}
-      </article>
+      <div className={styles.articleShell}>
+        <article className={styles.article}>
+          <h1 className={styles.title}>{title}</h1>
+          {children}
+        </article>
+        <BlogOutline headings={headings} />
+      </div>
       <PostFooter />
       <Navigation previous={previous} next={next} />
     </>

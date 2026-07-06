@@ -14,7 +14,7 @@ const ContentContext = createContext<ContentConfig | null>(null)
 
 export function ContentProvider({
   children,
-  content
+  content,
 }: {
   children: React.ReactNode
   content: ContentConfig
@@ -29,7 +29,9 @@ export function ContentProvider({
 export function useContent(): ContentConfig {
   const content = useContext(ContentContext)
   if (!content) {
-    throw new Error('useContent must be used within ContentProvider. Make sure your component is wrapped with ContentProvider.')
+    throw new Error(
+      'useContent must be used within ContentProvider. Make sure your component is wrapped with ContentProvider.',
+    )
   }
   return content
 }
@@ -45,7 +47,9 @@ export function useSocialLinks(displayOnly = true) {
   const links = content.social
   return displayOnly
     ? Object.fromEntries(
-        Object.entries(links).filter(([, link]) => (link as SocialLink).display),
+        Object.entries(links).filter(
+          ([, link]) => (link as SocialLink).display,
+        ),
       )
     : links
 }
@@ -68,7 +72,9 @@ export function useResumeConfig() {
 // Helper hook functions for dynamic values
 export function useTwitterHandle() {
   const content = useContent()
-  return content.social.twitter?.username ? `@${content.social.twitter.username}` : '@yourusername'
+  return content.social.twitter?.username
+    ? `@${content.social.twitter.username}`
+    : '@yourusername'
 }
 
 export function useWebsiteUrl() {

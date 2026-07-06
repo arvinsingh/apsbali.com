@@ -5,7 +5,7 @@ import FolderMinus from '@components/icons/folder-minus'
 import FolderPlus from '@components/icons/folder-plus'
 import FileIcon from '@components/icons/file'
 import Layout from '@components/icons/layout'
-import React, { PropsWithChildren, useState } from 'react'
+import React, { useState } from 'react'
 import styles from './file-tree.module.css'
 import Link from '@components/link'
 
@@ -113,16 +113,6 @@ const File: React.FC<FileProps> = ({ type, name, note, url: link }) => {
     setIsFocused(false)
   }
 
-  const Wrapper = ({ children }: PropsWithChildren) =>
-    link ? (
-      <Link underline={false} href={link} external>
-        <span className="sr-only">{type} file:</span>
-        {children}
-      </Link>
-    ) : (
-      <>{children}</>
-    )
-
   function getIcon() {
     switch (type) {
       case 'layout':
@@ -135,6 +125,13 @@ const File: React.FC<FileProps> = ({ type, name, note, url: link }) => {
         return <FileIcon />
     }
   }
+  const label = (
+    <span className={styles['file-name']}>
+      {name}
+      <span className={styles.note}>{note}</span>
+    </span>
+  )
+
   return (
     <li
       role="treeitem"
@@ -144,12 +141,14 @@ const File: React.FC<FileProps> = ({ type, name, note, url: link }) => {
     >
       <div className={styles.file} tabIndex={0}>
         {getIcon()}
-        <Wrapper>
-          <span className={styles['file-name']}>
-            {name}
-            <span className={styles.note}>{note}</span>
-          </span>
-        </Wrapper>
+        {link ? (
+          <Link underline={false} href={link} external>
+            <span className="sr-only">{type} file:</span>
+            {label}
+          </Link>
+        ) : (
+          label
+        )}
       </div>
     </li>
   )

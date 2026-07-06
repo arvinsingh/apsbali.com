@@ -12,7 +12,12 @@ type SocialButtonProps = {
   external?: boolean
 }
 
-export const SocialButton = ({ tooltip, href, icon, external = true }: SocialButtonProps) => {
+export const SocialButton = ({
+  tooltip,
+  href,
+  icon,
+  external = true,
+}: SocialButtonProps) => {
   return (
     <Tooltip text={tooltip} direction="top">
       <Link

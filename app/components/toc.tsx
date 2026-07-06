@@ -2,7 +2,11 @@
 
 import React from 'react'
 
-export const TableOfContents = ({ children }: { children: React.ReactNode }) => {
+export const TableOfContents = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
   return (
     <details className="toc-container group my-8 rounded-lg border border-gray-200 bg-gray-50 dark:border-gray-800 dark:bg-gray-900/50">
       <summary className="flex cursor-pointer list-none items-center justify-between p-4 font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-800/50">

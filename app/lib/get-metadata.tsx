@@ -1,4 +1,8 @@
-import { getContentConfig, getPersonalInfo, getTwitterHandle } from '@/data/content-config'
+import {
+  getContentConfig,
+  getPersonalInfo,
+  getTwitterHandle,
+} from '@/data/content-config'
 
 type Props = {
   title: string
@@ -57,7 +61,10 @@ export async function getMetadata({
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={`@${getTwitterHandle(contentConfig)}`} />
+      <meta
+        name="twitter:site"
+        content={`@${getTwitterHandle(contentConfig)}`}
+      />
       <meta
         property="og:site_name"
         content={`${personalInfo.name.first}'s site`}

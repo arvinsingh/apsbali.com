@@ -2,8 +2,10 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import remarkGfm from 'remark-gfm'
 import remarkFrontmatter from 'remark-frontmatter'
+import remarkMath from 'remark-math'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeKatex from 'rehype-katex'
 // @ts-expect-error no types
 import remarkA11yEmoji from '@fec/remark-a11y-emoji'
 import remarkToc from 'remark-toc'
@@ -15,9 +17,8 @@ export function PostBody({ children }: { children: string }) {
   return (
     <div className="relative article-wrapper">
       {/* <FloatingTOC /> */}
-      <article>
-        <MDXRemote
-          source={children}
+      <MDXRemote
+        source={children}
         options={{
           parseFrontmatter: true,
           blockJS: false,
@@ -25,6 +26,7 @@ export function PostBody({ children }: { children: string }) {
             remarkPlugins: [
               remarkGfm,
               remarkFrontmatter,
+              remarkMath,
               remarkA11yEmoji,
               remarkGithubBlockquoteAlert,
               [
@@ -35,12 +37,11 @@ export function PostBody({ children }: { children: string }) {
                 },
               ],
             ],
-            rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+            rehypePlugins: [rehypeKatex, rehypeSlug, rehypeAutolinkHeadings],
           },
         }}
         components={mdxComponents}
       />
-      </article>
     </div>
   )
 }

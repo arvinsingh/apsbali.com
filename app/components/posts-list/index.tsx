@@ -41,8 +41,7 @@ const Posts = (props: Props) => {
 
         return (
           <BlockEntry
-            // TODO: Math.random is a bad hack.
-            key={`post-item-${post.slug || Math.random()}`}
+            key={`post-item-${post.slug || post.href || post.title}`}
             href={post.isThirdParty ? post.href! : `/blog/${post.slug}`}
             title={post.title}
             date={new Date(date)}
@@ -54,7 +53,7 @@ const Posts = (props: Props) => {
       {paginate && showMore < posts.length && (
         <button
           onClick={() => {
-            setShowMore(showMore + 4)
+            setShowMore((count) => count + 4)
           }}
           className={styles.button}
         >
