@@ -63,13 +63,16 @@ async function generateManifest(subdirectory) {
       const description =
         typeof data.description === 'string' ? data.description : undefined
 
-      return [slug, {
+      return [
         slug,
-        title,
-        date,
-        description,
-        type: subdirectory === 'posts' ? 'post' : 'note',
-      }]
+        {
+          slug,
+          title,
+          date,
+          description,
+          type: subdirectory === 'posts' ? 'post' : 'note',
+        },
+      ]
     }),
   )
 
@@ -90,7 +93,11 @@ async function writeContentConfigSnapshot() {
     const fileContents = await fs.readFile(configPath, 'utf-8')
     // Validate JSON before writing so we surface malformed content early.
     const parsed = JSON.parse(fileContents)
-    await fs.writeFile(outputPath, `${JSON.stringify(parsed, null, 2)}\n`, 'utf-8')
+    await fs.writeFile(
+      outputPath,
+      `${JSON.stringify(parsed, null, 2)}\n`,
+      'utf-8',
+    )
     return true
   } catch (error) {
     console.warn('Unable to snapshot content config:', error)
@@ -100,7 +107,9 @@ async function writeContentConfigSnapshot() {
 
 async function syncPublicAssets() {
   try {
-    const entries = await fs.readdir(CONTENT_PUBLIC_DIR, { withFileTypes: true })
+    const entries = await fs.readdir(CONTENT_PUBLIC_DIR, {
+      withFileTypes: true,
+    })
 
     if (!entries.length) {
       console.warn('No assets found in content/public; skipping asset sync.')

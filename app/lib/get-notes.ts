@@ -9,7 +9,7 @@ import { getContentPath } from './content-path'
 function directoryExists(dirPath: string): boolean {
   try {
     return fs.statSync(dirPath).isDirectory()
-  } catch (err) {
+  } catch {
     return false
   }
 }
@@ -26,7 +26,6 @@ export const getNotes = cache(async () => {
   }
 
   const notesWithMetadata = readFiles<Note>(notesDir)
-
 
   const filtered = notesWithMetadata
     .filter((post) => post !== null)

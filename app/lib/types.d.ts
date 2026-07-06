@@ -28,5 +28,6 @@ export type Note = Base & {
   date: string
   body: string
   slug: string
+  lastModified?: number
   type: 'snippet' | 'tip' | 'note'
 }

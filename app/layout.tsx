@@ -1,5 +1,6 @@
 import styles from './layout.module.css'
 import '@styles/global.css'
+import 'katex/dist/katex.min.css'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Analytics } from '@vercel/analytics/react'

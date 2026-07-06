@@ -1,7 +1,13 @@
 import NextImage from 'next/image'
 import { getContentConfig, getWebsiteUrl } from '@/data/content-config'
 
-export default async function MDXImage({ src, alt }: { src: string; alt: string }) {
+export default async function MDXImage({
+  src,
+  alt,
+}: {
+  src: string
+  alt: string
+}) {
   let widthFromSrc, heightFromSrc
   const contentConfig = await getContentConfig()
   const url = new URL(src, getWebsiteUrl(contentConfig))

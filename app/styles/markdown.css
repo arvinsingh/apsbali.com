@@ -114,7 +114,7 @@ article div + pre {
   text-decoration: none;
 }
 
-article a  {
+article a {
   text-decoration: none;
 }
 
@@ -147,6 +147,12 @@ article ol li p:first-child {
 article details {
   margin-top: var(--gap-half);
   margin-bottom: var(--gap-half);
+}
+
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: var(--gap-half) 0;
 }
 
 /* Tables */
@@ -195,14 +201,13 @@ article tr:hover {
 
 /* TOC Component Styles */
 .toc-container h2 {
-    display: none; /* Hide the Markdown header since the Summary acts as title */
+  display: none; /* Hide the Markdown header since the Summary acts as title */
 }
 
 /* Ensure FloatingTOC can find headings inside the new structure */
 article {
   /* No special styles needed for the wrapper itself, inheriting standard markdown styles */
 }
-
 
 @media screen and (max-width: 760px) {
   .header-link::after {
@@ -215,7 +220,7 @@ article {
   padding: 0.5rem 1rem;
   margin-bottom: 16px;
   color: inherit;
-  border-left: .25em solid #d0d7de;
+  border-left: 0.25em solid #d0d7de;
   border-radius: 6px;
 }
 
@@ -335,4 +340,3 @@ article {
     color: #f85149;
   }
 }
-

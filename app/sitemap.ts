@@ -22,10 +22,8 @@ export default async function sitemap() {
     .concat(
       notes.map((note) => ({
         url: `${websiteUrl}/notes/${note.slug}`,
-        // @ts-expect-error
         lastModified: note.lastModified
-          ? // @ts-expect-error
-            new Date(note.lastModified).toISOString().split('T')[0]
+          ? new Date(note.lastModified).toISOString().split('T')[0]
           : new Date().toISOString().split('T')[0],
       })),
     )

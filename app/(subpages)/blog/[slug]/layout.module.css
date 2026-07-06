@@ -19,6 +19,128 @@
   margin-top: 1rem;
 }
 
+.articleShell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  width: 100%;
+}
+
+.article {
+  width: 100%;
+  min-width: 0;
+}
+
+.outlineDesktop {
+  display: none;
+}
+
+.outlineTitle {
+  margin: 0 0 var(--gap-half);
+  color: var(--gray);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.outlineList {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.outlineLink {
+  display: block;
+  padding: 0.2rem 0;
+  color: var(--gray);
+  font-size: 0.88rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.outlineLink:hover {
+  color: var(--fg);
+  text-decoration: none;
+}
+
+.depth3 {
+  padding-left: var(--gap);
+}
+
+.outlineMobile {
+  position: fixed;
+  right: var(--gap);
+  bottom: var(--gap);
+  z-index: 20;
+  display: block;
+  width: min(20rem, calc(100vw - var(--gap-double)));
+  padding: 0;
+  border: 1px solid var(--lighter-gray);
+  border-radius: var(--radius);
+  background: var(--bg-alpha);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(16px);
+}
+
+.outlineMobile summary {
+  padding: 0.65rem 0.8rem;
+  color: var(--fg);
+  font-size: 0.9rem;
+  font-weight: 650;
+  line-height: 1.2;
+  cursor: pointer;
+  list-style: none;
+}
+
+.outlineMobile summary::-webkit-details-marker {
+  display: none;
+}
+
+.outlineMobile summary::after {
+  float: right;
+  color: var(--gray);
+  content: '+';
+}
+
+.outlineMobile[open] summary {
+  border-bottom: 1px solid var(--lighter-gray);
+}
+
+.outlineMobile[open] summary::after {
+  content: '-';
+}
+
+.outlineMobile nav {
+  max-height: min(24rem, 55vh);
+  overflow: auto;
+  padding: var(--gap-half) var(--gap);
+}
+
+@media screen and (min-width: 80rem) {
+  .articleShell {
+    grid-template-columns: minmax(0, var(--main-content)) minmax(12rem, 14rem);
+    column-gap: var(--gap-double);
+    width: calc(var(--main-content) + var(--gap-double) + 14rem);
+  }
+
+  .outlineDesktop {
+    position: sticky;
+    top: var(--gap);
+    display: block;
+    max-height: calc(100vh - var(--gap-double));
+    overflow: auto;
+    padding-left: var(--gap);
+    border-left: 1px solid var(--lighter-gray);
+  }
+
+  .outlineMobile {
+    display: none;
+  }
+}
+
 /*.header {
   height: var(--header-height);
   margin: 0 auto;

@@ -57,32 +57,37 @@ const FALLBACK_CONTENT_CONFIG: ContentConfig = {
   },
 }
 
-const loadConfigFromFilesystem = cache(async (): Promise<ContentConfig | null> => {
-  try {
-    const [fs, pathModule, { getContentPath }] = await Promise.all([
-      import('fs/promises'),
-      import('path'),
-      import('@/lib/content-path'),
-    ])
+const loadConfigFromFilesystem = cache(
+  async (): Promise<ContentConfig | null> => {
+    try {
+      const [fs, pathModule, { getContentPath }] = await Promise.all([
+        import('fs/promises'),
+        import('path'),
+        import('@/lib/content-path'),
+      ])
 
-    const contentPath = getContentPath()
-    const configPath = pathModule.join(contentPath, 'config.json')
-    const fileContents = await fs.readFile(configPath, 'utf-8')
-    return JSON.parse(fileContents) as ContentConfig
-  } catch (error) {
-    console.warn('Unable to read content config from filesystem:', error)
-    return null
-  }
-})
+      const contentPath = getContentPath()
+      const configPath = pathModule.join(contentPath, 'config.json')
+      const fileContents = await fs.readFile(configPath, 'utf-8')
+      return JSON.parse(fileContents) as ContentConfig
+    } catch (error) {
+      console.warn('Unable to read content config from filesystem:', error)
+      return null
+    }
+  },
+)
 
 const loadConfigFromRemote = cache(async (): Promise<ContentConfig | null> => {
   try {
     const { getContentFileUrl } = await import('../../repo.config')
-    const remoteUrl = process.env.CONTENT_CONFIG_URL || getContentFileUrl('config.json')
+    const remoteUrl =
+      process.env.CONTENT_CONFIG_URL || getContentFileUrl('config.json')
     const response = await fetch(remoteUrl)
 
     if (!response.ok) {
-      throw new Error(`Failed to fetch config: ${response.status} ${response.statusText}`)
+      throw new Error(
+        `Failed to fetch config: ${response.status} ${response.statusText}`,
+      )
     }
 
     const config = (await response.json()) as ContentConfig
@@ -128,7 +133,9 @@ export async function getContentConfig(): Promise<ContentConfig> {
  */
 
 export function getTwitterHandle(config: ContentConfig): string {
-  return config.social.twitter?.username ? `@${config.social.twitter.username}` : '@yourusername'
+  return config.social.twitter?.username
+    ? `@${config.social.twitter.username}`
+    : '@yourusername'
 }
 
 export function getWebsiteUrl(config: ContentConfig): string {

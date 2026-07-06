@@ -4,7 +4,8 @@
   align-items: center;
 }
 
-.previous, .next {
+.previous,
+.next {
   font-weight: 500;
   transition: color var(--transition);
   flex: 0 0 45%;
@@ -19,7 +20,6 @@
   }
 }
 
-
 .next {
   text-align: right;
 }
@@ -29,7 +29,9 @@
   margin-bottom: var(--gap-quarter);
 }
 
-.previous:hover, .next:hover,
-.previous:focus, .next:focus {
+.previous:hover,
+.next:hover,
+.previous:focus,
+.next:focus {
   color: var(--fg);
 }

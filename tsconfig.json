@@ -13,10 +13,7 @@
     "jsx": "react-jsx",
     "target": "es2020",
     "module": "esnext",
-    "lib": [
-      "dom",
-      "es2019"
-    ],
+    "lib": ["dom", "es2019"],
     "noEmit": true,
     "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
@@ -37,21 +34,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "paths": {
-      "@*": [
-        "./app/*"
-      ],
-      "@data/*": [
-        "./app/data/*"
-      ],
-      "@data": [
-        "./app/data"
-      ]
+      "@*": ["./app/*"],
+      "@data/*": ["./app/data/*"],
+      "@data": ["./app/data"]
     },
     "incremental": true
   },
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "include": [
     "**/*.ts",
     "**/*.tsx",
@@ -60,15 +49,6 @@
     ".next/dev/types/**/*.ts"
   ],
   "mdx": {
-    "plugins": [
-      [
-        "remark-frontmatter",
-        [
-          "toml",
-          "yaml"
-        ]
-      ],
-      "remark-gfm"
-    ]
+    "plugins": [["remark-frontmatter", ["toml", "yaml"]], "remark-gfm"]
   }
 }

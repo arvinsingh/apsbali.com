@@ -6,14 +6,9 @@ import { getContentPath } from './content-path'
 
 const loadProjectsFromFile = cache(async (): Promise<Project[]> => {
   const contentPath = getContentPath()
-  const projectsPath = path.join(
-    contentPath,
-    'projects',
-    'projects.json',
-  )
+  const projectsPath = path.join(contentPath, 'projects', 'projects.json')
   const fileContent = await fs.readFile(projectsPath, 'utf8')
   const data = JSON.parse(fileContent)
-
 
   const projects = data.projects.map((proj: any) => ({
     ...proj,

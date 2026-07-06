@@ -18,8 +18,8 @@ export default function BlogLayout({
   children: React.ReactNode
 }) {
   return (
-    <Outline type="layout" name="Blog">
-      <article>{children}</article>
+    <Outline type="layout" name="Notes">
+      {children}
     </Outline>
   )
 }

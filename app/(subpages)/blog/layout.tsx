@@ -19,7 +19,7 @@ export default function BlogLayout({
 }) {
   return (
     <Outline type="layout" name="Blog">
-      <article>{children}</article>
+      {children}
     </Outline>
   )
 }

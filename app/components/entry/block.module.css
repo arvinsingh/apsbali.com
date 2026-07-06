@@ -84,8 +84,8 @@
 }
 
 .thirdParty {
- color: var(--gray);
- font-size: 0.9rem;
+  color: var(--gray);
+  font-size: 0.9rem;
 }
 
 .thirdParty:after {
